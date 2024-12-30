@@ -1,0 +1,29 @@
+@keyframes FadeIn {
+  0%{
+      opacity: 0;
+  }
+  100%{
+      opacity: 1;
+  }
+}
+
+.recommended-foods-container h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.food-display-list {
+  display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 20px;
+    min-width: 640px;
+    row-gap: 20px;
+    margin-top: 20px;
+    animation: FadeIn 1s;
+}
+
+.no-recommendations {
+  font-size: 16px;
+  color: #777;
+}

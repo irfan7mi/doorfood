@@ -1,0 +1,129 @@
+.header{
+    min-height: 50vh;
+    min-width: 640px;
+    height: fit-content;
+    background-image: url('./top-view.jpg');
+    background-size: cover;
+    background-position-y: -90px;
+    box-shadow: 0px 0px 6px rgb(216, 200, 200);
+    border-radius: 15px;
+    margin: 12px auto 10px;
+}
+
+.header-contents{
+    margin-left: 25px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    align-items: start;
+    max-width: 50%;
+    animation: FadeIn 3s;
+}
+
+@keyframes FadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.header-contents h1{
+    margin-top: 25px;
+    font-size: 56px;
+}
+
+.header-contents .view-menu-btn{
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: tomato;
+    border: 2px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+}
+
+.header-contents button:hover{
+    background-color: black;
+}
+
+@media (max-width: 1200px) {
+    .header-contents h1{
+        margin-top: 25px;
+        font-size: 54px;
+    }
+    .header{
+        height: 50vh;
+        background-position-y: -90px;
+    } 
+}
+
+@media (max-width: 1165px) {
+    .header-contents h1{
+        margin-top: 25px;
+        font-size: 50px;
+    }
+    .header{
+        height: 50vh;
+        background-position-y: -90px;
+    } 
+}
+
+@media (max-width: 1080px) {
+    .header-contents h1{
+        margin-top: 25px;
+        font-size: 48px;
+    }
+    .header{
+        height: 48vh;
+        background-position-y: -90px;
+    } 
+}
+
+@media (max-width: 1036px) {
+    .header-contents h1{
+        margin-top: 25px;
+        font-size: 44px;
+    }
+    .header{
+        height: 46vh;
+        background-position-y: -90px;
+    } 
+}
+
+@media (max-width: 948px) {
+    .header-contents h1{
+        margin-top: 15px;
+        font-size: 40px;
+    }
+    .header{
+        height: 46vh;
+        background-position-y: -90px;
+    } 
+}
+
+@media (max-width: 864px) {
+    .header h1{
+        font-size: 38px;
+    }
+    .header{
+        height: 46vh;
+        background-position-y: -90px;
+    } 
+}
+
+@media (max-width: 840px) {
+    .header-contents{
+        max-width: 62%;
+    }
+    .header-contents p{
+        display: none;
+    }
+    .header{
+        height: 40vh;
+        background-position-y: -90px;
+    }       
+}

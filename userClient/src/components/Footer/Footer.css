@@ -1,0 +1,42 @@
+body{
+    margin: 0px;
+}
+
+.footer-card{
+    margin-top: 30px;
+    min-width: 730px;
+    color: white;
+    padding: 50px 0px;
+    background-color: rgb(15, 15, 15);
+}
+
+.footer-about li{
+    list-style: none;
+}
+
+.fooder-title{
+    color: rgb(179, 182, 20);
+    width: 85%;
+    margin: auto;
+    justify-items: left;
+    display: grid;
+    font-size: 16px;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 30px;
+}
+
+.fooder-content{
+    margin-top: 10px;
+    font-size: 14px;
+    color: white;
+}
+
+.company-about{
+    text-align: justify;
+}
+
+.hr-line{
+    width: 85%;
+    border: 0.1px solid rgba(236, 195, 195, 0.247);
+    margin: 15px auto;
+}

@@ -1,0 +1,18 @@
+body{
+  font-family: "Outfit", sans-serif;
+}
+
+*{
+  margin: 0px;
+  padding: 0px;
+
+}
+
+a{
+  text-decoration: none;
+}
+
+.app{
+  margin: auto;
+  width: 87%;
+}
