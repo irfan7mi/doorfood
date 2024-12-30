@@ -18,6 +18,7 @@ const app= express()
 app.use(cors())
 app.use(express.json())
 app.use(express.static('uploads'))
+const url = process.env.MONGO_URI ||'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
 
 const createToken = (id) => {
   return jwt.sign({id}, process.env.JWT_SECRET)
@@ -292,8 +293,13 @@ app.use("/review", reviewRouter)
 app.use("/recommend", recommendRouter);
 
 const connectDB = async () => {
-  await mongoose.connect("mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood")
+  await mongoose.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+  })
   .then(() => console.log("DB Connected"))
+  .catch(err => console.error(err));
 }
 
 app.listen(port, () => {
