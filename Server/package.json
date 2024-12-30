@@ -5,11 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "postinstall": "npm rebuild bcrypt --build-from-source"
-  },
-  "engines": {
-    "node": ">=22.0.0"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -24,10 +20,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.5",
     "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.4",
     "stripe": "^16.2.0",
     "validator": "^13.12.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.4"
   }
 }
