@@ -94,10 +94,6 @@ app.get("/user/list", async (req, res) => {
   }
 })
 
-app.get('/favicon.ico', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
-});
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/images')
@@ -129,6 +125,10 @@ app.post("/add", upload.single('image'), async (req, res) => {
     console.error(e);
     res.json({ success: false, message: "Error adding item" });
   }
+});
+
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
 });
 
 const isPeakHour = () => {
