@@ -12,6 +12,7 @@ import reviewRouter from './routes/reviewRouter.js'
 import JWT_SECRET from 'dotenv/config.js'
 import path from 'path'
 import fs from 'fs'
+import 'dotenv/config'
 import recommendRouter from './routes/recommendRouter.js'
 const port = 4000
 const app= express()
