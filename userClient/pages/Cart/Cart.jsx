@@ -57,6 +57,7 @@ const Cart = () => {
         address,
         amount,
         payment,
+        url
       });
   
       if (response.data.success) {
