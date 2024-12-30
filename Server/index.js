@@ -18,7 +18,7 @@ const app= express()
 app.use(cors())
 app.use(express.json())
 app.use(express.static('uploads'))
-const url = process.env.MONGO_URI ||'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
+const uri = process.env.MONGO_URI ||'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
 
 const createToken = (id) => {
   return jwt.sign({id}, process.env.JWT_SECRET)
