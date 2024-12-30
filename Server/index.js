@@ -293,9 +293,7 @@ app.use("/review", reviewRouter)
 app.use("/recommend", recommendRouter);
 
 const connectDB = async () => {
-  await mongoose.connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+  await mongoose.connect(url, {}
     serverSelectionTimeoutMS: 5000,
   })
   .then(() => console.log("DB Connected"))
