@@ -12,13 +12,14 @@ import reviewRouter from './routes/reviewRouter.js'
 import JWT_SECRET from 'dotenv/config.js'
 import path from 'path'
 import fs from 'fs'
+import 'dotenv/config'
 import recommendRouter from './routes/recommendRouter.js'
 const port = 4000
 const app= express()
 app.use(cors())
 app.use(express.json())
 app.use(express.static('uploads'))
-const url = process.env.MONGO_URI ||'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
+const url = process.env.MONGO_URI || 'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
 
 const createToken = (id) => {
   return jwt.sign({id}, process.env.JWT_SECRET)
@@ -293,12 +294,12 @@ app.use("/review", reviewRouter)
 app.use("/recommend", recommendRouter);
 
 const connectDB = async () => {
-  await mongoose.connect(url, {}
+  await mongoose.connect(url, {
     serverSelectionTimeoutMS: 5000,
   })
-  .then(() => console.log("DB Connected"))
-  .catch(err => console.error(err));
-}
+  .then(() => console.log('DB Connected'))
+  .catch(err => console.error('DB Connection Error:', err));
+};
 
 app.listen(port, () => {
   console.log(`Server started on http://localhost:${port}`)
