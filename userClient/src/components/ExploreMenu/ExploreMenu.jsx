@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { menu_list } from '../../Assets/Assets'
+import { menu_list } from '../../AssetsImg/Assets.jsx'
 import './ExploreMenu.css'
 import { StoreContext } from '../../../context/StoreContext'
 

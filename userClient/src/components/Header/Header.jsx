@@ -1,6 +1,6 @@
 import React from 'react'
 import './Header.css'
-import { assets } from '../../Assets/Assets'
+import { assets } from '../../AssetsImg/Assets.jsx'
 
 const Header = () => {
   return (
