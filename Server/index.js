@@ -295,7 +295,7 @@ app.use("/recommend", recommendRouter);
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect('mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood');
     console.log('MongoDB Connected');
   } catch (err) {
     console.error('Error connecting to MongoDB:', err);
