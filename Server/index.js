@@ -293,14 +293,14 @@ app.use("/review", reviewRouter)
 app.use("/recommend", recommendRouter);
 
 const connectDB = async () => {
-  await mongoose.connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000,
-  })
-  .then(() => console.log("DB Connected"))
-  .catch(err => console.error(err));
-}
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('MongoDB Connected');
+  } catch (err) {
+    console.error('Error connecting to MongoDB:', err);
+    process.exit(1); // Exit process on failure
+  }
+};
 
 app.listen(port, () => {
   console.log(`Server started on http://localhost:${port}`)
