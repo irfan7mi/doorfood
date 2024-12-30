@@ -293,7 +293,7 @@ app.use("/review", reviewRouter)
 app.use("/recommend", recommendRouter);
 
 const connectDB = async () => {
-  await mongoose.connect("mongodb://localhost:27017/doorfood")
+  await mongoose.connect("mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood")
   .then(() => console.log("DB Connected"))
 }
 
