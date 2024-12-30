@@ -1,0 +1,50 @@
+.navbar-container{
+  padding: 12px 26px 12px;
+  max-height: 30px;
+  width: 96%;
+  min-width: fit-content;
+  display: flex;
+  background-color: blue;
+  justify-content: space-between;
+  border-bottom: 1px solid blanchedalmond;
+}
+
+.profile-container{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.profile-img{
+  font-weight: bold;
+  display: inline;
+  font-size: 18px;
+  padding: 7px 11px;
+  color: blue;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+}
+
+.account-profile{
+  color: white;
+}
+
+.login-btn{
+  background-color: white;
+  border: none;
+  color: blue;
+  border-radius: 3px;
+  height: fit-content;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.login-btn:hover{
+  background-color: rgba(0, 0, 255, 0.562);
+  color: white;
+  border: 1px solid white;
+}

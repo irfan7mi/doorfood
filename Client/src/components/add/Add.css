@@ -1,0 +1,91 @@
+.add-page{
+  background-color: wheat;
+  min-height: 90vh;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.add-container{
+  margin-top: 40px;
+  background-color: blue;
+  padding: 0px 45px 30px;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.add-item-container{
+  display: flex;
+  color:  rgb(148, 104, 104);
+  flex-direction: column;
+  gap: 3px;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.add-container label{
+  margin-top: 10px;
+  color:  white;
+}
+
+.add-item-container input ,select{
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 8px 10px;
+}
+
+.add-item-container textarea{
+  padding: 10px 10px 20px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.price-input{
+  width: 120px;
+  display: inline;
+}
+
+.category-input{
+  display: inline;
+}
+
+.price-category-container{
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+}
+
+.price-container, .category-container{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input-image{
+  color: white;
+}
+
+.preview-img{
+  width: 120px;
+  height: 70px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.432);
+}
+
+.button{
+  padding: 8px 10px;
+  border-radius: 4px;
+  margin-top: 25px;
+  background-color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.button:hover{
+  background-color: blue;
+  color: white;
+  border: 1px solid white;
+}

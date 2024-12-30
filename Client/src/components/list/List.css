@@ -1,0 +1,81 @@
+.food-list-container{
+  background-color: wheat;
+  width: 100%;
+  color: white;
+  height: 85vh;
+  min-height: 100%;
+  min-height: fit-content;
+  padding: 30px 0px;
+  overflow: scroll;
+}
+
+.food-list-container::-webkit-scrollbar{
+  display: none;
+}
+
+.food-list-title{
+  color: black;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.food-list-table{
+  margin-left: 23%;
+  padding: 3px;
+  border-radius: 10px;
+  max-width: 70vw;
+  min-width: 38vw;
+  background-color: white;
+  text-align: left;
+  margin-top: -10px;
+}
+
+.food-list-table th{
+  padding: 7px 10px 8px;
+  border-radius: 5px;
+  border-bottom: 2px solid white;
+  background-color: blue;
+}
+
+.food-list-table td{
+  color: black;
+  padding-left: 10px;
+}
+
+.food-img{
+  height: 60px;
+  border-radius: 4px;
+}
+
+.btn-container{
+  display: flex;
+  gap: 10px;
+  padding: 25px 10px 25px 2px;
+  width: fit-content;
+  align-items: center;
+}
+
+.update-btn{
+  padding: 5px 10px;
+  text-decoration: none;
+  background-color: goldenrod;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+.update-btn:hover{
+  background-color: rgba(218, 165, 32, 0.747);
+}
+
+.delete-btn{
+  padding: 8px 10px;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+.delete-btn:hover{
+  background-color: rgba(255, 0, 0, 0.712);
+}

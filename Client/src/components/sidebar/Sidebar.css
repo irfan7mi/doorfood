@@ -1,0 +1,55 @@
+.sidebar-container{
+  background-color: blue;
+  color: wheat;
+  width: 15vw;
+  max-width: 250px;
+  min-width: 220px;
+}
+
+.option-container{
+  padding: 10px 4px;
+  margin: 0px;
+  margin-left: 12px;
+}
+
+.option{
+  background-color: blue;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 2px;
+  padding: 6px 6px 6px;
+  list-style: none;
+  color: white;
+}
+
+.option:hover{
+  background-color: rgba(245, 222, 179, 0.315);
+  border-radius: 5px 0px 0px 5px;
+  width: 100%;
+  color: white;
+}
+
+.active{
+  background-color: white;
+  color: blue;
+  width: 100%;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.icon-img{
+  background-color: white;
+  border: 1px solid blue;
+  border-radius: 50%;
+  padding: 4px;
+  color: blue;
+}
+
+.icon-img:hover{
+  color: white;
+}

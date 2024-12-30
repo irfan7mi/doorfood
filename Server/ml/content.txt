@@ -1,0 +1,13 @@
+flask: For setting up the backend.
+flask-cors: To handle CORS issues.
+pymongo: For interacting with MongoDB.
+pandas: To structure data into tabular format.
+
+
+
+Healthy foods are those that provide you with the nutrients 
+you need to sustain your body's well-being and retain energy.
+
+Food provides essential nutrients for overall health and well being.
+
+Delicious food. High level proteins.

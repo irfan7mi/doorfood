@@ -1,0 +1,38 @@
+.order-container{
+  margin-top: 20px;
+  width: 100%;
+  min-height: 86vh;
+  height: fit-content;
+}
+
+.order-items{
+  margin-bottom: -10px;
+}
+
+.order-item-title{
+  margin-left: 4vw;
+  font-weight: 700;
+  display: grid;
+  color: rgb(206, 168, 168);
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.order-item-list{
+  align-items: center;
+  font-weight: 400;
+  margin-top: 7px;
+  font-size: 14px;
+  color: black;
+}
+
+.status{
+  width: 150px;
+  background-color: transparent;
+  color: black;
+}
+
+.h-line{
+  border: 0.1px solid rgba(236, 195, 195, 0.247);
+  margin: 1px auto;
+}
