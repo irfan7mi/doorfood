@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import multer from 'multer'
 import jwt from 'jsonwebtoken'
 import validator from 'validator'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import UserModel from './models/user.js'
 import FoodModel from './models/food.js'
 import orderRouter from './routes/orderRouter.js'
@@ -13,7 +13,6 @@ import JWT_SECRET from 'dotenv/config.js'
 import path from 'path'
 import fs from 'fs'
 import recommendRouter from './routes/recommendRouter.js'
-import OrderModel from './models/order.js'
 const port = 4000
 const app= express()
 app.use(cors())
