@@ -16,7 +16,7 @@ const Home = () => {
       setUserCount(response.data.userCount)
     }
     const fetchFoodList = async () => {
-      const response = await axios.get("https://doorfood-app-server-98ey71h4u-irfans-projects-878c5a63.vercel.app"+"/food/list")
+      const response = await axios.get("https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app/food/list")
       setFoodCount(response.data.foodCount)
     }
     const fetchOrderList = async () => {
