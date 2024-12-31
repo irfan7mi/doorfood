@@ -302,7 +302,7 @@ app.use("/recommend", recommendRouter);
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(url, { serverSelectionTimeoutMS: 5000 });
+    await mongoose.connect(url);
     console.log('DB Connected');
   } catch (err) {
     console.error('DB Connection Error:', err);
