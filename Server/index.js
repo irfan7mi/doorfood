@@ -12,14 +12,26 @@ import reviewRouter from './routes/reviewRouter.js'
 import JWT_SECRET from 'dotenv/config.js'
 import path from 'path'
 import fs from 'fs'
+import { fileURLToPath } from 'url';
 import 'dotenv/config'
 import recommendRouter from './routes/recommendRouter.js'
+const url = process.env.MONGO_URI || 'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const port = 4000
 const app= express()
 app.use(cors())
 app.use(express.json())
-app.use(express.static('uploads'))
-const url = process.env.MONGO_URI || 'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+  res.json({ success: true, message: 'Welcome to DooRFooD API!' });
+});
+
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
+});
 
 const createToken = (id) => {
   return jwt.sign({id}, process.env.JWT_SECRET)
@@ -95,15 +107,11 @@ app.get("/user/list", async (req, res) => {
 })
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/images')
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname))
-  }
-})
+  destination: (req, file, cb) => cb(null, 'uploads/images'),
+  filename: (req, file, cb) => cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`),
+});
 
-const upload = multer({storage: storage})
+const upload = multer({ storage });
 
 app.post("/add", upload.single('image'), async (req, res) => {
   const { name, description, price, category, dynamicPricing, peakHourMultiplier } = req.body;
@@ -125,10 +133,6 @@ app.post("/add", upload.single('image'), async (req, res) => {
     console.error(e);
     res.json({ success: false, message: "Error adding item" });
   }
-});
-
-app.get('/favicon.ico', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
 });
 
 const isPeakHour = () => {
@@ -292,17 +296,17 @@ app.post("/cart/remove", async(req, res) => {
   }
 })
 
-
 app.use("/order", orderRouter)
 app.use("/review", reviewRouter)
 app.use("/recommend", recommendRouter);
 
 const connectDB = async () => {
-  await mongoose.connect(url, {
-    serverSelectionTimeoutMS: 5000,
-  })
-  .then(() => console.log('DB Connected'))
-  .catch(err => console.error('DB Connection Error:', err));
+  try {
+    await mongoose.connect(url, { serverSelectionTimeoutMS: 5000 });
+    console.log('DB Connected');
+  } catch (err) {
+    console.error('DB Connection Error:', err);
+  }
 };
 
 app.listen(port, () => {
