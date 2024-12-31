@@ -5,7 +5,7 @@ export const StoreContext = createContext (null)
 const StoreContextProvider = (props) => {
     const [image,setImage] = useState(true)
     const [data, setData] = useState([])
-    const url = "https://doorfood-app-server-98ey71h4u-irfans-projects-878c5a63.vercel.app/"
+    const url = "https://doorfood-app-server-98ey71h4u-irfans-projects-878c5a63.vercel.app"
 
 const contextValue = {
     image,
