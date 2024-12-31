@@ -33,6 +33,11 @@ app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
 });
 
+app.use(cors({
+  origin: "*", // Allow all origins (for development)
+  methods: ["GET", "POST", "PUT", "DELETE"],
+}));
+
 const createToken = (id) => {
   return jwt.sign({id}, process.env.JWT_SECRET)
 }
