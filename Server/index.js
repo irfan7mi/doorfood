@@ -315,6 +315,6 @@ const connectDB = async () => {
 };
 
 app.listen(port, () => {
-  console.log(`Server started on http://localhost:${port}`)
+  console.log(`Server started on https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app`)
 })
 connectDB()

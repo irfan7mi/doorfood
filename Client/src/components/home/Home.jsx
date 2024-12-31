@@ -17,6 +17,7 @@ const Home = () => {
     }
     const fetchFoodList = async () => {
       const response = await axios.get("https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app/food/list")
+      console.log("API Response:", response.data);
       setFoodCount(response.data.foodCount)
     }
     const fetchOrderList = async () => {
