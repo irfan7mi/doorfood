@@ -17,12 +17,12 @@ const Home = () => {
     });
 
     const fetchUserList = async () => {
-      const response = await instance.get("/user/list");
+      const response = await instance.get(url+"/user/list");
       console.log(response.data);
       setUserCount(response.data.userCount)
     }
     const fetchFoodList = async () => {
-      const response = await axios.get("url"+"/food/list")
+      const response = await axios.get(url+"/food/list")
       setFoodCount(response.data.foodCount)
     }
     const fetchOrderList = async () => {
