@@ -6,7 +6,7 @@ import { StoreContext } from "../../../context/Context.jsx";
 
 const Add = () => {
   const [image, setImage] = useState(false);
-  const {url, token} = useContext(StoreContext)
+  const {url} = useContext(StoreContext)
   const [data, setData] = useState({
     name: "",
     description: "",

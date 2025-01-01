@@ -37,6 +37,7 @@ const Home = () => {
   useEffect(() => { 
     async function loadData() {
       await fetchCount()
+      console.log(`TOKEN: ${localStorage.getItem("token")}`)
     }
     loadData()
   },[])
