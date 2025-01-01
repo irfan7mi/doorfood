@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 const authMiddleware = async (req, res, next) => {
   // Retrieve the token from the Authorization header
   const authHeader = req.headers.Authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+  if (authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ success: false, message: 'Not Authorized. Login Again!' });
   }
 
