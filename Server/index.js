@@ -9,12 +9,12 @@ import UserModel from './models/user.js'
 import FoodModel from './models/food.js'
 import orderRouter from './routes/orderRouter.js'
 import reviewRouter from './routes/reviewRouter.js'
-import JWT_SECRET from 'dotenv/config.js'
 import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url';
 import 'dotenv/config'
 import recommendRouter from './routes/recommendRouter.js'
+const JWT_SECRET = process.env.JWT_SECRET || "random#secret"
 const url = process.env.MONGO_URI || 'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -39,7 +39,7 @@ app.use(cors({
 }));
 
 const createToken = (id) => {
-  return jwt.sign({id}, process.env.JWT_SECRET)
+  return jwt.sign({id}, JWT_SECRET)
 }
 
 app.post("/user/signin",async (req, res) => {
@@ -315,6 +315,6 @@ const connectDB = async () => {
 };
 
 app.listen(port, () => {
-  console.log(`Server started on "https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app`)
+  console.log(`Server started on ...`)
 })
 connectDB()
