@@ -6,7 +6,7 @@ import { StoreContext } from "../../../context/Context.jsx";
 
 const Add = () => {
   const [image, setImage] = useState(false);
-  const {url} = useContext(StoreContext)
+  const {url, token} = useContext(StoreContext)
   const [data, setData] = useState({
     name: "",
     description: "",
@@ -35,7 +35,11 @@ const Add = () => {
     formData.append("averageRating", null); // Add initial null rating
 
     try {
-      const response = await axios.post(`${url}/add`, formData);
+      const response = await axios.post(`${url}/add`, formData, {
+        headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+      },});
       if (response.data.success) {
         setData({
           name: "",

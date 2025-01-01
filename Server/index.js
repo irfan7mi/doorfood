@@ -160,7 +160,7 @@ app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
     price,
     category,
     dynamicPricing: dynamicPricing === "true",
-    peakHourMultiplier: parseFloat(peakHourMultiplier) || 1.5,
+    peakHourMultiplier: parseFloat(peakHourMultiplier) || 5,
   });
   try {
     await food.save();
