@@ -44,7 +44,7 @@ const Home = () => {
       setUserCount(response.data.userCount)
     }
     const fetchFoodList = async () => {
-      const response = await adminApiClient.get("https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app/food/list")
+      const response = await adminApiClient.get("https://doorfood-app-server-1v0vh5vwa-irfans-projects-878c5a63.vercel.app/food/list")
       console.log("API Response:", response.data);
       setFoodCount(response.data.foodCount)
     }
