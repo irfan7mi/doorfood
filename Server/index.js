@@ -93,7 +93,7 @@ app.post("/user/signin",async (req, res) => {
   }
 })
 
-app.post("/user/login", async (req, res) => {
+app.post("/user/login", authMiddleware, async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await UserModel.findOne({ email });
@@ -274,7 +274,7 @@ app.post("/food/delete/:id", async (req, res) => {
   }
 })
 
-app.post("/cart/add", async(req, res) => {
+app.post("/cart/add", authMiddleware, async(req, res) => {
   const {email, itemId} = req.body
   try{
     let userData = await UserModel.findOne({email})
@@ -298,7 +298,7 @@ app.post("/cart/add", async(req, res) => {
   }
 })
 
-app.post("/cart/remove", async(req, res) => {
+app.post("/cart/remove", authMiddleware, async(req, res) => {
   const {email, itemId} = req.body
   try{
     let userData = await UserModel.findOne({email})
