@@ -11,8 +11,14 @@ const Home = () => {
   const {url} = useContext(StoreContext)
 
   const fetchCount = async () => {
+    const instance = axios.create({
+      baseURL: "https://doorfood-app-server-kh1xy6qlk-irfans-projects-878c5a63.vercel.app",
+      headers: { Accept: "*/*", "User-Agent": "https://doorfood-app-client.vercel.app" },
+    });
+
     const fetchUserList = async () => {
-      const response = await axios.get(url+"/user/list")
+      const response = await instance.get("/user/list");
+      console.log(response.data);
       setUserCount(response.data.userCount)
     }
     const fetchFoodList = async () => {
