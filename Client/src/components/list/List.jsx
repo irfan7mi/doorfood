@@ -11,6 +11,7 @@ const List = () => {
 
   const fetchFoodList = async () => {
     const response = await axios.get(url+"/food/list")
+    console.log(response.data.data)
     setData(response.data.data)
   }
 
