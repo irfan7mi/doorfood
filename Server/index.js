@@ -26,7 +26,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const ADMIN_ID = process.env.ADMIN_ID || "admin123"; // Replace with your unique admin ID
-const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret";
+const JWT_SECRET = process.env.JWT_SECRET || "random#secret";
 
 app.get("/generate-admin-token", authMiddleware, (req, res) => {
   try {
@@ -55,43 +55,54 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 
-const createToken = (id) => {
-  return jwt.sign({id}, process.env.JWT_SECRET)
-}
+const createToken = (userId) => {
+  const secret = process.env.JWT_SECRET || "random#secret"; 
+  const expiresIn = "7d"; 
+  return jwt.sign({ id: userId }, secret, { expiresIn });
+};
 
-app.post("/user/signin",async (req, res) => {
-  const {name, mobile, email, password} = req.body
-  try{
-    const exist = await UserModel.findOne({email})
+app.post("/user/signin", async (req, res) => {
+  const { name, mobile, email, password } = req.body;
+  try {
+    const exist = await UserModel.findOne({ email });
     if (exist) {
-      return res.json({success:false, message:"User already exist!"})
+      return res.json({ success: false, message: "User already exists!" });
     }
     if (!validator.isEmail(email)) {
-      return res.json({success:false, message:"Please enter valid email address!"})
+      return res.json({ success: false, message: "Please enter a valid email address!" });
     }
-    if (password.length<8) {
-      return res.json({success:false, message:"Please enter strong password!"})
+    if (password.length < 8) {
+      return res.json({ success: false, message: "Please enter a stronger password!" });
     }
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password, salt)
-    
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const newUser = new UserModel({
-      name: name,
-      mobile: mobile,
-      email: email,
-      password: hashedPassword
-    })
-    let user = await newUser.save()
-    let userId = await user._id
-    let userCartData = await user.cartData
-    const token = createToken(user._id)
-    return res.send({success: true,message: "Register successfully",token, userId, userCartData})
+      name,
+      mobile,
+      email,
+      password: hashedPassword,
+    });
+    const user = await newUser.save();
+
+    // Generate a JWT token
+    const token = createToken(user._id); // Ensure `createToken` is defined correctly
+    const userId = user._id;
+    const userCartData = user.cartData;
+
+    return res.json({
+      success: true,
+      message: "Registered successfully!",
+      token,
+      userId,
+      userCartData,
+    });
+  } catch (e) {
+    console.error(e);
+    return res.json({ success: false, message: "Error occurred during registration." });
   }
-  catch (e) {
-    console.log(e)
-    res.send({success:false, message: "Error"})
-  }
-})
+});
 
 app.post("/user/login", authMiddleware, async (req, res) => {
   const { email, password } = req.body;
