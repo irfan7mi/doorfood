@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const ADMIN_ID = process.env.ADMIN_ID || "admin123"; // Replace with your unique admin ID
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret";
 
-app.get("/generate-admin-token", (req, res) => {
+app.get("/generate-admin-token", authMiddleware, (req, res) => {
   try {
     // Generate a token with admin privileges
     const token = jwt.sign({ id: ADMIN_ID, role: "admin" }, JWT_SECRET, {
