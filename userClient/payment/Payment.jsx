@@ -25,7 +25,7 @@ const PaymentForm = ({ onPaymentComplete }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${url}/order/payment`, {items, url});
+      const response = await axios.post(`${url}/order/payment`, {items});
       if (response.data.success) {
         toast.success('Payment successful!');
         onPaymentComplete();

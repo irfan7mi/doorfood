@@ -9,7 +9,7 @@ const stripe = new Stripe("sk_test_51PezAzBjbOSBdmXq32oGQgheZ6SGJnh4kJZgnBTx3Utq
 });
 
 const placeOrder = async (req, res) => {
-  const frontend_url = req.body.url;
+  const frontend_url = "https://doorfood-app-user-client.vercel.app";
   try {
     if (!req.body.email) {
       return res.status(400).json({ success: false, message: "Email is required" });
@@ -75,7 +75,7 @@ const placeOrder = async (req, res) => {
 };
 
 const paymentOrder = async (req, res) => {
-  const frontend_url = req.body.url;
+  const frontend_url = "https://doorfood-app-user-client.vercel.app";
   const {items} = req.body;
   console.log("Data:",items)
   try {
