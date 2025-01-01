@@ -10,7 +10,9 @@ const Home = () => {
   const [userCount, setUserCount] = useState("")
   const {url} = useContext(StoreContext)
 
-  localStorage.setItem("adminToken", "your_generated_admin_token");
+  const sampleAdminToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluMTIzIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjkwOTA5MjAwLCJleHAiOjE2OTA5MTI4MDB9.aWyHCp-sTExaTdvFZ7WoQZPi3tWqCyIK4F2fSjSjOGg";
+
+  localStorage.setItem("adminToken", sampleAdminToken);
   const adminApiClient = axios.create({
     baseURL: "https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app",
   });
