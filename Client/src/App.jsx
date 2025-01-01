@@ -9,12 +9,16 @@ import {Routes, Route} from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Orders from './components/order/Orders'
+import { StoreContext } from '../context/Context'
+import { useContext } from 'react'
+import Login from './components/login/Login'
 
 function App() {
- 
+  const {showLogIn} = useContext(StoreContext)
   return (
     <div>
       <ToastContainer/>
+      {showLogIn ? <Login/> : <></>}
       <Navbar/>
       <div className='app-content'>
         <Sidebar/>
