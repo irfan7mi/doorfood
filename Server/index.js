@@ -87,14 +87,14 @@ app.post("/user/signin", async (req, res) => {
     const user = await newUser.save();
 
     // Generate a JWT token
-    const token = createToken(user._id); // Ensure `createToken` is defined correctly
+
     const userId = user._id;
     const userCartData = user.cartData;
 
     return res.json({
       success: true,
       message: "Registered successfully!",
-      token,
+
       userId,
       userCartData,
     });
