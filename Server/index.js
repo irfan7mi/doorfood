@@ -15,6 +15,7 @@ import { fileURLToPath } from 'url';
 import 'dotenv/config'
 import recommendRouter from './routes/recommendRouter.js'
 import authMiddleWare from './middleware/auth.js'
+import AdminModel from './models/admin.js'
 const JWT_SECRET = process.env.JWT_SECRET || "random#secret"
 const url = process.env.MONGO_URI || 'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
 const __filename = fileURLToPath(import.meta.url);
@@ -47,17 +48,24 @@ const createToken = (id) => {
 
 app.post("/admin/login", async (req, res) => {
   const{email, password} = req.body
+
   try{
-    let user = await UserModel.findOne({email})
-    if (!user) {
-      return res.json({success: false, message: "User doesn't exist!"})
+    if (!validator.isEmail(email)) {
+      return res.json({success:false, message:"Please enter valid email address!"})
     }
-    const isMatch = bcrypt.compare(email, password)
-    if (!isMatch) {
-      return res.json({success: false, message: "Invalid credentials"})
+    if (password.length<8) {
+      return res.json({success:false, message:"Please enter strong password!"})
     }
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
+    
+    const newUser = new AdminModel({
+      email: email,
+      password: hashedPassword
+    })
+    let user = await newUser.save()
     const token = createToken(user._id)
-    return res.send({success:true, message: "Login successfully", token})
+    return res.send({success: true,message: "Register successfully",token})
   }
   catch (e) {
     console.log(e)
