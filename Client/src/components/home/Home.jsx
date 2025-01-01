@@ -10,18 +10,46 @@ const Home = () => {
   const [userCount, setUserCount] = useState("")
   const {url} = useContext(StoreContext)
 
+  localStorage.setItem("adminToken", "your_generated_admin_token");
+  const adminApiClient = axios.create({
+    baseURL: "https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app",
+  });
+
+  adminApiClient.interceptors.request.use((config) => {
+    const token = localStorage.getItem("adminToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  }, (error) => {
+    return Promise.reject(error);
+  });
+
+  const fetchAdminToken = async () => {
+    try {
+      const response = await axios.get(`${url}/generate-admin-token`);
+      if (response.data.success) {
+        localStorage.setItem("adminToken", response.data.token);
+      } else {
+        console.error("Failed to fetch admin token");
+      }
+    } catch (error) {
+      console.error("Error fetching admin token:", error);
+    }
+  };
+
   const fetchCount = async () => {
     const fetchUserList = async () => {
-      const response = await axios.get(url+"/user/list")
+      const response = await adminApiClient.get(url+"/user/list")
       setUserCount(response.data.userCount)
     }
     const fetchFoodList = async () => {
-      const response = await axios.get("https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app/food/list")
+      const response = await adminApiClient.get("https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app/food/list")
       console.log("API Response:", response.data);
       setFoodCount(response.data.foodCount)
     }
     const fetchOrderList = async () => {
-      const response = await axios.get(url+"/order/list")
+      const response = await adminApiClient.get(url+"/order/list")
       setOrderCount(response.data.orderCount)
     }
     await fetchUserList()
@@ -29,12 +57,13 @@ const Home = () => {
     await fetchOrderList()
   }
 
-  useEffect(() => { 
-    async function loadData() {
-      await fetchCount()
+  useEffect(() => {
+    async function initialize() {
+      await fetchAdminToken(); // Fetch and store the token
+      await fetchCount(); // Load counts
     }
-    loadData()
-  },[])
+    initialize();
+  }, []);
 
   return (
     <div className='home-page'>

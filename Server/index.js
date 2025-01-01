@@ -9,7 +9,7 @@ import UserModel from './models/user.js'
 import FoodModel from './models/food.js'
 import orderRouter from './routes/orderRouter.js'
 import reviewRouter from './routes/reviewRouter.js'
-import JWT_SECRET from 'dotenv/config.js'
+import authMiddleware from './middleware/auth.js'
 import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url';
@@ -24,6 +24,23 @@ app.use(cors())
 app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
+
+const ADMIN_ID = process.env.ADMIN_ID || "admin123"; // Replace with your unique admin ID
+const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret";
+
+app.get("/generate-admin-token", (req, res) => {
+  try {
+    // Generate a token with admin privileges
+    const token = jwt.sign({ id: ADMIN_ID, role: "admin" }, JWT_SECRET, {
+      expiresIn: "1h", // Token valid for 1 hour
+    });
+    res.json({ success: true, token });
+  } catch (error) {
+    console.error("Error generating admin token:", error);
+    res.status(500).json({ success: false, message: "Error generating token" });
+  }
+});
+
 
 app.get('/', (req, res) => {
   res.json({ success: true, message: 'Welcome to DooRFooD API!' });
@@ -76,30 +93,28 @@ app.post("/user/signin",async (req, res) => {
   }
 })
 
-
 app.post("/user/login", async (req, res) => {
-  const{email, password} = req.body
-  try{
-    let user = await UserModel.findOne({email})
+  const { email, password } = req.body;
+  try {
+    const user = await UserModel.findOne({ email });
     if (!user) {
-      return res.json({success: false, message: "User doesn't exist!"})
+      return res.status(404).json({ success: false, message: "User doesn't exist!" });
     }
-    let userId = await user._id
-    let userCartData = await user.cartData
-    const isMatch = bcrypt.compare(email, password)
-    if (!isMatch) {
-      return res.json({success: false, message: "Invalid credentials"})
-    }
-    const token = createToken(user._id)
-    return res.send({success:true, message: "Login successfully", token, userId, userCartData})
-  }
-  catch (e) {
-    console.log(e)
-    res.send({success: false, message: "Error"})
-  }
-})
 
-app.get("/user/list", async (req, res) => {
+    const isMatch = await bcrypt.compare(password, user.password); // Corrected
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: "Invalid credentials" });
+    }
+
+    const token = createToken(user._id);
+    return res.json({ success: true, message: "Login successfully", token, userId: user._id, userCartData: user.cartData });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ success: false, message: "Error" });
+  }
+});
+
+app.get("/user/list", authMiddleware, async (req, res) => {
   try{
     const food = await UserModel.find()
     let userCount = await UserModel.find({}).countDocuments()
@@ -168,7 +183,7 @@ app.post("/food/rate", async (req, res) => {
   }
 });
 
-app.get("/food/list", async (req, res) => {
+app.get("/food/list", authMiddleware, async (req, res) => {
   const { search } = req.query;
 
   try {
