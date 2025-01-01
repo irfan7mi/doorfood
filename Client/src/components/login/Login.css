@@ -1,0 +1,79 @@
+.LogIn{
+    background-color: rgba(0, 0, 0, 0.137);
+    display: grid;
+    z-index: 1px;
+    width: 100%;
+    position: absolute;
+    height: fit-content;
+    min-height: 100%;
+}
+
+.LogIn-container{
+    place-self: center;
+    background-color: rgb(255, 255, 255);
+    min-width: 290px;
+    margin: auto;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px rgba(194, 147, 147, 0.596);
+    align-items: center;
+    padding: 15px 0px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.LogIn-title{
+    text-align: center;
+    position: a;
+    margin-bottom: 15px;
+}
+
+.LogIn-title h3{
+    text-align: center;
+    display: inline;
+    font-weight: 800;
+}
+
+.LogIn-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+}
+
+.LogIn-inputs input{
+    padding: 8px;
+    border-radius: 5px;
+    outline-style: none;
+    border: none;
+    box-shadow: 0px 0px 10px rgba(194, 147, 147, 0.671);
+}
+
+.LogIn-inputs button{
+    margin-top: 12px;
+    padding: 8px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: tomato;
+    color: white;
+    outline-style: none;
+    border: none;
+    box-shadow: 0px 0px 10px rgba(194, 147, 147, 0.671);
+    cursor: pointer;
+}
+
+.cancel-btn{
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid tomato;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: -4px;
+    margin-left: 85px;
+    position: absolute;
+}
+
+.cancel-btn:hover{
+    background-color: tomato;
+    color: white;
+}

@@ -13,7 +13,7 @@ const Add = () => {
     price: "",
     category: "Burger",
     dynamicPricing: false,
-    peakHourMultiplier: 1.5,
+    peakHourMultiplier: 5,
   });
 
   const eventHandler = (e) => {

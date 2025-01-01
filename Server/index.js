@@ -14,6 +14,7 @@ import fs from 'fs'
 import { fileURLToPath } from 'url';
 import 'dotenv/config'
 import recommendRouter from './routes/recommendRouter.js'
+import authMiddleWare from './middleware/auth.js'
 const JWT_SECRET = process.env.JWT_SECRET || "random#secret"
 const url = process.env.MONGO_URI || 'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
 const __filename = fileURLToPath(import.meta.url);
@@ -43,6 +44,26 @@ app.use(cors({
 const createToken = (id) => {
   return jwt.sign({id}, JWT_SECRET)
 }
+
+app.post("/admin/login", async (req, res) => {
+  const{email, password} = req.body
+  try{
+    let user = await UserModel.findOne({email})
+    if (!user) {
+      return res.json({success: false, message: "User doesn't exist!"})
+    }
+    const isMatch = bcrypt.compare(email, password)
+    if (!isMatch) {
+      return res.json({success: false, message: "Invalid credentials"})
+    }
+    const token = createToken(user._id)
+    return res.send({success:true, message: "Login successfully", token})
+  }
+  catch (e) {
+    console.log(e)
+    res.send({success: false, message: "Error"})
+  }
+})
 
 app.post("/user/signin",async (req, res) => {
   const {name, mobile, email, password} = req.body
@@ -120,7 +141,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-app.post("/add", upload.single('image'), async (req, res) => {
+app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
   const { name, description, price, category, dynamicPricing, peakHourMultiplier } = req.body;
   const imageFilename = req.file.filename;
 
