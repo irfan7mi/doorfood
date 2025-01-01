@@ -9,7 +9,7 @@ import UserModel from './models/user.js'
 import FoodModel from './models/food.js'
 import orderRouter from './routes/orderRouter.js'
 import reviewRouter from './routes/reviewRouter.js'
-import authMiddleware from './middleware/auth.js'
+import JWT_SECRET from 'dotenv/config.js'
 import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url';
@@ -25,23 +25,6 @@ app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const ADMIN_ID = process.env.ADMIN_ID || "admin123"; // Replace with your unique admin ID
-const JWT_SECRET = process.env.JWT_SECRET || "random#secret";
-
-app.get("/generate-admin-token", authMiddleware, (req, res) => {
-  try {
-    // Generate a token with admin privileges
-    const token = jwt.sign({ id: ADMIN_ID, role: "admin" }, JWT_SECRET, {
-      expiresIn: "1h", // Token valid for 1 hour
-    });
-    res.json({ success: true, token });
-  } catch (error) {
-    console.error("Error generating admin token:", error);
-    res.status(500).json({ success: false, message: "Error generating token" });
-  }
-});
-
-
 app.get('/', (req, res) => {
   res.json({ success: true, message: 'Welcome to DooRFooD API!' });
 });
@@ -55,77 +38,68 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 
-const createToken = (userId) => {
-  const secret = process.env.JWT_SECRET || "random#secret"; 
-  const expiresIn = "7d"; 
-  return jwt.sign({ id: userId }, secret, { expiresIn });
-};
+const createToken = (id) => {
+  return jwt.sign({id}, process.env.JWT_SECRET)
+}
 
-app.post("/user/signin", async (req, res) => {
-  const { name, mobile, email, password } = req.body;
-  try {
-    const exist = await UserModel.findOne({ email });
+app.post("/user/signin",async (req, res) => {
+  const {name, mobile, email, password} = req.body
+  try{
+    const exist = await UserModel.findOne({email})
     if (exist) {
-      return res.json({ success: false, message: "User already exists!" });
+      return res.json({success:false, message:"User already exist!"})
     }
     if (!validator.isEmail(email)) {
-      return res.json({ success: false, message: "Please enter a valid email address!" });
+      return res.json({success:false, message:"Please enter valid email address!"})
     }
-    if (password.length < 8) {
-      return res.json({ success: false, message: "Please enter a stronger password!" });
+    if (password.length<8) {
+      return res.json({success:false, message:"Please enter strong password!"})
     }
-
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
+    
     const newUser = new UserModel({
-      name,
-      mobile,
-      email,
-      password: hashedPassword,
-    });
-    const user = await newUser.save();
-
-    // Generate a JWT token
-
-    const userId = user._id;
-    const userCartData = user.cartData;
-
-    return res.json({
-      success: true,
-      message: "Registered successfully!",
-
-      userId,
-      userCartData,
-    });
-  } catch (e) {
-    console.error(e);
-    return res.json({ success: false, message: "Error occurred during registration." });
+      name: name,
+      mobile: mobile,
+      email: email,
+      password: hashedPassword
+    })
+    let user = await newUser.save()
+    let userId = await user._id
+    let userCartData = await user.cartData
+    const token = createToken(user._id)
+    return res.send({success: true,message: "Register successfully",token, userId, userCartData})
   }
-});
+  catch (e) {
+    console.log(e)
+    res.send({success:false, message: "Error"})
+  }
+})
 
-app.post("/user/login", authMiddleware, async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const user = await UserModel.findOne({ email });
+
+app.post("/user/login", async (req, res) => {
+  const{email, password} = req.body
+  try{
+    let user = await UserModel.findOne({email})
     if (!user) {
-      return res.status(404).json({ success: false, message: "User doesn't exist!" });
+      return res.json({success: false, message: "User doesn't exist!"})
     }
-
-    const isMatch = await bcrypt.compare(password, user.password); // Corrected
+    let userId = await user._id
+    let userCartData = await user.cartData
+    const isMatch = bcrypt.compare(email, password)
     if (!isMatch) {
-      return res.status(401).json({ success: false, message: "Invalid credentials" });
+      return res.json({success: false, message: "Invalid credentials"})
     }
-
-    const token = createToken(user._id);
-    return res.json({ success: true, message: "Login successfully", token, userId: user._id, userCartData: user.cartData });
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ success: false, message: "Error" });
+    const token = createToken(user._id)
+    return res.send({success:true, message: "Login successfully", token, userId, userCartData})
   }
-});
+  catch (e) {
+    console.log(e)
+    res.send({success: false, message: "Error"})
+  }
+})
 
-app.get("/user/list", authMiddleware, async (req, res) => {
+app.get("/user/list", async (req, res) => {
   try{
     const food = await UserModel.find()
     let userCount = await UserModel.find({}).countDocuments()
@@ -194,7 +168,7 @@ app.post("/food/rate", async (req, res) => {
   }
 });
 
-app.get("/food/list", authMiddleware, async (req, res) => {
+app.get("/food/list", async (req, res) => {
   const { search } = req.query;
 
   try {
@@ -285,7 +259,7 @@ app.post("/food/delete/:id", async (req, res) => {
   }
 })
 
-app.post("/cart/add", authMiddleware, async(req, res) => {
+app.post("/cart/add", async(req, res) => {
   const {email, itemId} = req.body
   try{
     let userData = await UserModel.findOne({email})
@@ -309,7 +283,7 @@ app.post("/cart/add", authMiddleware, async(req, res) => {
   }
 })
 
-app.post("/cart/remove", authMiddleware, async(req, res) => {
+app.post("/cart/remove", async(req, res) => {
   const {email, itemId} = req.body
   try{
     let userData = await UserModel.findOne({email})
@@ -341,6 +315,6 @@ const connectDB = async () => {
 };
 
 app.listen(port, () => {
-  console.log(`Server started on https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app`)
+  console.log(`Server started on "https://doorfood-app-server-kuphfg5gv-irfans-projects-878c5a63.vercel.app`)
 })
 connectDB()
