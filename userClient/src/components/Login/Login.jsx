@@ -25,22 +25,51 @@ const Login = ({setShowLogIn}) => {
         let url = `${url}/user/`
         if (current === "SignIn") {
             url += "signin"
+            const response = await axios.post(url, user)
+            if (response.data.success) {
+                setToken(response.data.token)
+                localStorage.setItem("token", response.data.token)
+                toast.success(response.data.message)
+                setUserId(response.data.userId)
+                setCartItem(response.data.userCartData)
+                setLogIn(true)
+                setShowLogIn(false)
+            }
+            else{
+                toast.error(response.data.message)
+            }
         }
         else{
             url += "login"
-        }
-        const response = await axios.post(url, user)
-        if (response.data.success) {
-            setToken(response.data.token)
-            localStorage.setItem("token", response.data.token)
-            toast.success(response.data.message)
-            setUserId(response.data.userId)
-            setCartItem(response.data.userCartData)
-            setLogIn(true)
-            setShowLogIn(false)
-        }
-        else{
-            toast.error(response.data.message)
+            const token = localStorage.getItem("token");
+                if (!token) {
+                  toast.error("User not logged in! Please log in to proceed.");
+                  return;
+                }
+            try{
+            const response = await axios.post(url, user, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`,
+                    },
+                }
+            )
+            if (response.data.success) {
+                setToken(response.data.token)
+                localStorage.setItem("token", response.data.token)
+                toast.success(response.data.message)
+                setUserId(response.data.userId)
+                setCartItem(response.data.userCartData)
+                setLogIn(true)
+                setShowLogIn(false)
+            }
+            else{
+                toast.error(response.data.message)
+            }
+            } catch (error) {
+                  console.error(error);
+                  toast.error(error.response?.data?.message || "Failed to add item. Please try again.");
+            }
         }
     }
     return (
