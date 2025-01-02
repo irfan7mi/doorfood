@@ -20,8 +20,10 @@ const JWT_SECRET = process.env.JWT_SECRET || "random#secret"
 const url = process.env.MONGO_URI || 'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const { v2: cloudinary } = require('cloudinary');
-const { v2: cloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
+const { config, v2: cloudinaryV2 } = cloudinary;
+
 const port = 4000
 const app= express()
 app.use(cors())
@@ -137,8 +139,14 @@ app.get("/user/list", async (req, res) => {
   }
 })
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
+cloudinary.config({
+  cloud_name: "dit8o6iph", 
+  api_key: "715248412946731",      
+  api_secret: "Cc1x3XX6Ti7eC8sJm7pN1u_-jf0", 
+});
+
+const storage = multerStorageCloudinary({
+  cloudinary: cloudinaryV2,
   params: {
     folder: "doorfood-images", 
     allowed_formats: ["jpg", "png", "jpeg"], 
