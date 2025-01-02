@@ -1,12 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import FoodItem from "../FoodItem/FoodItems";
 import "./FoodDisplay.css";
-import RecommendedFoods from "../Recommendation/RecommendedFood.jsx";
 import { StoreContext } from "../../../context/StoreContext";
 import axios from "axios";
 
 const FoodDisplay = () => {
-  const { userId, category, url } = useContext(StoreContext);
+  const { category, url } = useContext(StoreContext);
   const [ foodData, setFoodData ] = useState([])
 
   useEffect(() => {
