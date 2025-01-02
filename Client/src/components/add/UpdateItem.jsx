@@ -6,7 +6,7 @@ import { StoreContext } from "../../../context/Context"
 import { useNavigate, useParams } from "react-router-dom"
 
 const UpdateItem = () => {
-  const {image, setImage, data, setData, url, imgURL} = useContext(StoreContext)
+  const {image, setImage, data, setData, url} = useContext(StoreContext)
   const navigate = useNavigate()
   const {id} = useParams()
   console.log(data)
@@ -14,7 +14,7 @@ const UpdateItem = () => {
   const fetchFoodList = async () => {
     const response = await axios.get(`${url}/food/list/`+id)
     setData(response.data.data)
-    console.log(response.data.data)
+    console.log(response.data.data.image)
   }
 
   useEffect(() => { 
@@ -64,7 +64,7 @@ const UpdateItem = () => {
           {image ? 
           (
           <label htmlFor="">
-            <img src={image} alt={data?.name || 'Preview'} onError={(e) => { e.target.src = 'https://via.placeholder.com/50'; }} className="preview-img" />
+            <img src={data.image} onError={(e) => { e.target.src = 'https://via.placeholder.com/50'; }} className="preview-img" />
           </label>
           ) : (<> </>)}
         <label htmlFor="">Product name</label>
