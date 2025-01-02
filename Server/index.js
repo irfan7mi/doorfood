@@ -145,10 +145,12 @@ const upload = multer({ storage });
 app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
   try {
     const { name, description, price, category, dynamicPricing, peakHourMultiplier } = req.body;
+
     if (!name || !description || !price || !category || !req.file) {
       return res.status(400).json({ success: false, message: "All fields are required." });
     }
 
+    const imageFilename = req.file.filename;
     const parsedDynamicPricing = dynamicPricing === "true" || dynamicPricing === true;
     const parsedPeakHourMultiplier = parseFloat(peakHourMultiplier);
 
@@ -156,20 +158,23 @@ app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid peak hour multiplier." });
     }
 
+    // Create a new food item
     const food = new FoodModel({
       image: imageFilename,
       name,
       description,
-      price,
+      price: parseFloat(price),
       category,
       dynamicPricing: parsedDynamicPricing,
       peakHourMultiplier: parsedPeakHourMultiplier,
     });
+
     await food.save();
-    res.json({ success: true, message: "Item added" });
+
+    res.json({ success: true, message: "Item added successfully." });
   } catch (e) {
-    console.error(e);
-    res.status(500).json({ success: false, message: "Error adding item" });
+    console.error("Error adding item:", e);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
 
