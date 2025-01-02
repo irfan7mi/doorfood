@@ -10,14 +10,13 @@ const StoreContextProvider = (props) => {
   const [cartItem, setCartItem] = useState(() => {
     const savedCart = localStorage.getItem("cartItem");
     return savedCart ? JSON.parse(savedCart) : {};
-  }); // Initialize from localStorage
+  });
   const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
   const [userId, setUserId] = useState("");
   const [food_list, setFoodList] = useState([]);
   const [category, setCategory] = useState("All");
 
-  // Fetch food list from the server
   useEffect(() => {
     const fetchFoodList = async () => {
       try {
@@ -29,19 +28,17 @@ const StoreContextProvider = (props) => {
         }
       } catch (error) {
         console.error("Error fetching foods:", error);
-        setFoodList([]); // Set an empty list to prevent errors
+        setFoodList([]);
       }
     };
 
     fetchFoodList();
   }, []);
 
-  // Save cart state to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("cartItem", JSON.stringify(cartItem));
   }, [cartItem]);
 
-  // Add item to the cart
   const addToCart = async (itemId) => {
     if (logIn) {
         if (!cartItem[itemId]) {
@@ -61,7 +58,6 @@ const StoreContextProvider = (props) => {
     }
   };
 
-  // Remove item from the cart
   const removeFromCart = async (itemId) => {
     setCartItem((prev) => {
       const updatedCart = { ...prev };
@@ -83,7 +79,6 @@ const StoreContextProvider = (props) => {
     }
   };
 
-  // Calculate total amount from the cart
   const totalFromCart = () => {
     let totalAmount = 0;
 
@@ -100,7 +95,6 @@ const StoreContextProvider = (props) => {
     return totalAmount;
   };
 
-  // Payment process
   const processPayment = async (paymentDetails) => {
     try {
       const response = await axios.post(`${url}/payment`, {
@@ -113,7 +107,7 @@ const StoreContextProvider = (props) => {
 
       if (response.data.success) {
         toast.success("Payment successful!");
-        setCartItem({}); // Reset the cart after successful payment
+        setCartItem({}); 
       } else {
         toast.error(response.data.message);
       }
@@ -123,7 +117,6 @@ const StoreContextProvider = (props) => {
     }
   };
 
-  // Load token from localStorage on mount
   useEffect(() => {
     const savedToken = localStorage.getItem("token");
     if (savedToken) {
