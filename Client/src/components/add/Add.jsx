@@ -24,6 +24,14 @@ const Add = () => {
 
   const Submit = async (e) => {
     e.preventDefault();
+    // Validate token existence
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("User not logged in! Please log in to proceed.");
+      return;
+    }
+  
+    // Create FormData object
     const formData = new FormData();
     formData.append("image", image);
     formData.append("name", data.name);
@@ -32,14 +40,18 @@ const Add = () => {
     formData.append("category", data.category);
     formData.append("dynamicPricing", data.dynamicPricing);
     formData.append("peakHourMultiplier", data.peakHourMultiplier);
-    formData.append("averageRating", null); // Add initial null rating
-
+    formData.append("averageRating", null); // Optional field for initial rating
+  
     try {
+      // Make API request
       const response = await axios.post(`${url}/add`, formData, {
         headers: {
-        'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${localStorage.getItem("token")}`,
-      },});
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+  
+      // Handle success
       if (response.data.success) {
         setData({
           name: "",
@@ -47,16 +59,18 @@ const Add = () => {
           price: "",
           category: "Burger",
           dynamicPricing: false,
-          peakHourMultiplier: 0.05,
+          peakHourMultiplier: 5,
         });
         setImage(false);
         toast.success(response.data.message);
       } else {
-        toast.error(response.data.message);
+        // Handle server-side error message
+        toast.error(response.data.message || "Failed to add item.");
       }
     } catch (error) {
       console.error(error);
-      toast.error("Failed to add item.");
+      // Show error message based on response or a fallback
+      toast.error(error.response?.data?.message || "Failed to add item. Please try again.");
     }
   };
 

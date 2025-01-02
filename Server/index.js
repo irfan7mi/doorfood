@@ -48,24 +48,17 @@ const createToken = (id) => {
 
 app.post("/admin/login", async (req, res) => {
   const{email, password} = req.body
-
   try{
-    if (!validator.isEmail(email)) {
-      return res.json({success:false, message:"Please enter valid email address!"})
+    let user = await AdminModel.findOne({email})
+    if (!user) {
+      return res.json({success: false, message: "Admin doesn't exist!"})
     }
-    if (password.length<8) {
-      return res.json({success:false, message:"Please enter strong password!"})
+    const isMatch = bcrypt.compare(email, password)
+    if (!isMatch) {
+      return res.json({success: false, message: "Invalid credentials"})
     }
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password, salt)
-    
-    const newUser = new AdminModel({
-      email: email,
-      password: hashedPassword
-    })
-    let user = await newUser.save()
     const token = createToken(user._id)
-    return res.send({success: true,message: "Register successfully",token})
+    return res.send({success:true, message: "Login successfully", token})
   }
   catch (e) {
     console.log(e)
@@ -159,7 +152,7 @@ app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
     description,
     price,
     category,
-    dynamicPricing: dynamicPricing === "true",
+    dynamicPricing: dynamicPricing === "true" || dynamicPricing === true,
     peakHourMultiplier: parseFloat(peakHourMultiplier) || 5,
   });
   try {
@@ -167,7 +160,7 @@ app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
     res.json({ success: true, message: "Item added" });
   } catch (e) {
     console.error(e);
-    res.json({ success: false, message: "Error adding item" });
+    res.status(500).json({ success: false, message: "Error adding item" });
   }
 });
 
