@@ -60,7 +60,7 @@ const UpdateItem = () => {
       <div className="add-item-container">
         <label htmlFor="">Upload Image</label>
         <input type="file" name="image" className="input-image" onChange={(e) => setImage(e.target.files[0])} required/>
-        {image ? <label htmlFor=""> <img src={image ? data.image : ""} className="preview-img"/></label> : <> </>}
+        {image ? <label htmlFor=""> <img src={image ? data.image : "" alt={data.name} onError={(e) => { e.target.src = 'https://via.placeholder.com/50'; }} className="preview-img"/></label> : <> </>}
         <label htmlFor="">Product name</label>
         <input type="text" name="name" value={data.name}  placeholder="Enter food name..." onChange={eventHandler} required/>
         <label htmlFor="">Product description</label>

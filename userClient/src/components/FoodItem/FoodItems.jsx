@@ -11,7 +11,7 @@ const FoodItem = ({ id, name, image, description, price, averageRating }) => {
             <div className="food-img-cart-count">
                 <img
                     className="food-img-container"
-                    src={image}
+                    src={image} alt={item.name} onError={(e) => { e.target.src = 'https://via.placeholder.com/50'; }
                     alt="Food Item"
                 />
                 { !cartItem[id] ? (
