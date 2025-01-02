@@ -91,10 +91,8 @@ app.post("/user/signin",async (req, res) => {
       password: hashedPassword
     })
     let user = await newUser.save()
-    let userId = await user._id
-    let userCartData = await user.cartData
     const token = createToken(user._id)
-    return res.send({success: true,message: "Register successfully",token, userId, userCartData})
+    return res.send({success: true,message: "Register successfully",token})
   }
   catch (e) {
     console.log(e)
@@ -103,7 +101,7 @@ app.post("/user/signin",async (req, res) => {
 })
 
 
-app.post("/user/login", async (req, res) => {
+app.post("/user/login", authMiddleWare, async (req, res) => {
   const{email, password} = req.body
   try{
     let user = await UserModel.findOne({email})

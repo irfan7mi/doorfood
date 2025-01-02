@@ -29,10 +29,7 @@ const Login = ({setShowLogIn}) => {
                 setToken(response.data.token)
                 localStorage.setItem("token", response.data.token)
                 toast.success(response.data.message)
-                setUserId(response.data.userId)
-                setCartItem(response.data.userCartData)
                 setLogIn(true)
-                setShowLogIn(false)
             }
             else{
                 toast.error(response.data.message)
