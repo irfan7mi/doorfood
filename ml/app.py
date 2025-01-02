@@ -14,6 +14,10 @@ db = client['doorfood']
 order_collection = db['orders']
 food_collection = db['foods']
 
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({"success": True, message: 'Welcome to DooRFooD API!'}), 200
+
 @app.route('/recommend', methods=['POST'])
 def recommend():
     user_data = request.get_json()
