@@ -5,7 +5,7 @@ import { StoreContext } from "../../../context/StoreContext";
 
 const FoodItem = ({ id, name, image, description, price, averageRating }) => {
     const { cartItem, addToCart, removeFromCart, url } = useContext(StoreContext);
-    console.log("IMG: ", img)
+    
     return (
         <div className="food-display-container">
             <div className="food-img-cart-count">
