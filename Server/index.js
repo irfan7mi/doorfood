@@ -161,7 +161,7 @@ app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
       return res.status(400).json({ success: false, message: "All fields are required." });
     }
 
-    const imageUrl = req.file.path;
+    const imageUrl = req.file.path
     console.log("Request body:", req.body);
     console.log("Uploaded file:", req.file);
     const parsedDynamicPricing = dynamicPricing === "true" || dynamicPricing === true;
