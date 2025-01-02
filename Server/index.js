@@ -21,7 +21,6 @@ const url = process.env.MONGO_URI || 'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@d
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const cloudinary = require('cloudinary').v2;
-const multer = require('multer');
 const { config, v2: cloudinaryV2 } = cloudinary;
 
 const port = 4000
