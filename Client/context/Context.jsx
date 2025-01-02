@@ -8,7 +8,7 @@ const StoreContextProvider = (props) => {
     const [token, setToken] = useState("");
     const [data, setData] = useState([])
     const url = "https://doorfood-app-server.vercel.app"
-    const imgURL = "https://mydoorfood.com/media/"
+    const imgURL = "https://res.cloudinary.com/dit8o6iph/image/upload/v1735802389/doorfood-images/"
 
     useEffect(() => {
         const savedToken = localStorage.getItem("token");
