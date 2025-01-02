@@ -16,7 +16,7 @@ const FoodItem = ({ id, name, image, description, price, averageRating }) => {
                     </p>
                 ):(
                     <div className="cart-item-container">
-                        <p className="remove-item" onClick={() => {removeFromCart(id)}}>
+                        <p className="remove-item" onClick={removeFromCart(id)}>
                             -
                         </p>
                         <p className="count-item">{cartItem[id]}</p>
