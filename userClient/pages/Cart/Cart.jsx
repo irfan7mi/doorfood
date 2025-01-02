@@ -94,7 +94,7 @@ const Cart = () => {
             cartItem[item._id] > 0 ? (
               <div className="cart-item-title cart-item-list" key={index}>
                 <img
-                  src={`http://localhost:4000/images/${item.image}`}
+                  src={item.image}
                   className="cart-item-image"
                   alt={item.name}
                 />
