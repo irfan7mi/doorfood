@@ -7,7 +7,7 @@ import { StoreContext } from "../../../context/Context"
 
 const List = () => {
   const [data, setData] = useState([])
-  const {url} = useContext(StoreContext)
+  const {url, imgURL} = useContext(StoreContext)
 
   const fetchFoodList = async () => {
     const response = await axios.get(url+"/food/list")
@@ -47,7 +47,7 @@ const List = () => {
         <tbody>
       {data.map((item, index) => (
       <tr key={index}> 
-        <td><img src={`${url}/images/`+item.image} className="food-img"/></td>
+        <td><img src={`${imgURL}`+item.image} className="food-img"/></td>
         <td>{item.name}</td>
         <td>{item.price}</td>
         <td>{item.category}</td>

@@ -8,6 +8,7 @@ const StoreContextProvider = (props) => {
     const [token, setToken] = useState("");
     const [data, setData] = useState([])
     const url = "https://doorfood-app-server.vercel.app"
+    const imgURL = "https://mydoorfood.com/media/"
 
     useEffect(() => {
         const savedToken = localStorage.getItem("token");
@@ -25,7 +26,8 @@ const contextValue = {
     setToken,
     showLogIn, 
     setShowLogIn,
-    url
+    url,
+    imgURL
 }
 
 return (

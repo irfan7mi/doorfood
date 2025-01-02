@@ -6,7 +6,7 @@ import { StoreContext } from "../../../context/Context"
 import { useNavigate, useParams } from "react-router-dom"
 
 const UpdateItem = () => {
-  const {image, setImage, data, setData, url} = useContext(StoreContext)
+  const {image, setImage, data, setData, url, imgURL} = useContext(StoreContext)
   const navigate = useNavigate()
   const {id} = useParams()
   console.log(data)
@@ -60,7 +60,7 @@ const UpdateItem = () => {
       <div className="add-item-container">
         <label htmlFor="">Upload Image</label>
         <input type="file" name="image" className="input-image" onChange={(e) => setImage(e.target.files[0])} required/>
-        {image ? <label htmlFor=""> <img src={image ? `${url}/images/`+data.image : ""} className="preview-img"/></label> : <> </>}
+        {image ? <label htmlFor=""> <img src={image ? `${imgURL}`+data.image : ""} className="preview-img"/></label> : <> </>}
         <label htmlFor="">Product name</label>
         <input type="text" name="name" value={data.name}  placeholder="Enter food name..." onChange={eventHandler} required/>
         <label htmlFor="">Product description</label>
