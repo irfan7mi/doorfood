@@ -22,9 +22,9 @@ const Login = ({setShowLogIn}) => {
 
     const Submit = async (e) => {
         e.preventDefault()
-        let url = `${url}/user/`
+        let uri = `${url}/user/`
         if (current === "SignIn") {
-            url += "signin"
+            uri += "signin"
             const response = await axios.post(url, user)
             if (response.data.success) {
                 setToken(response.data.token)
