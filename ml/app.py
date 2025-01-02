@@ -5,7 +5,6 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
-import os
 
 app = Flask(__name__)
 CORS(app, origins=["https://doorfood-app-user-client.vercel.app"])
@@ -84,4 +83,4 @@ def recommend():
     return jsonify({"success": True, "recommendations": unique_recommendations.tolist()}), 200
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    app.run()
