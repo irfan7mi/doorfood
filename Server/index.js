@@ -22,6 +22,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import { v2 as cloudinary } from 'cloudinary';
 const { config, v2: cloudinaryV2 } = cloudinary;
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 const port = 4000
 const app= express()
 app.use(cors())
@@ -143,7 +144,7 @@ cloudinary.config({
   api_secret: "Cc1x3XX6Ti7eC8sJm7pN1u_-jf0", 
 });
 
-const storage = multerStorageCloudinary({
+const storage = new CloudinaryStorage({
   cloudinary: cloudinaryV2,
   params: {
     folder: "doorfood-images", 
