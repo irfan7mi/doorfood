@@ -20,8 +20,8 @@ const JWT_SECRET = process.env.JWT_SECRET || "random#secret"
 const url = process.env.MONGO_URI || 'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-import cloudinary from "./cloudinary.js";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
+const { v2: cloudinary } = require('cloudinary');
+const { v2: cloudinaryStorage } = require('multer-storage-cloudinary');
 const port = 4000
 const app= express()
 app.use(cors())
