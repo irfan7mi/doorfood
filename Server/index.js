@@ -143,19 +143,28 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
-  const { name, description, price, category, dynamicPricing, peakHourMultiplier } = req.body;
-  const imageFilename = req.file.filename;
-
-  const food = new FoodModel({
-    image: imageFilename,
-    name,
-    description,
-    price,
-    category,
-    dynamicPricing: dynamicPricing === "true" || dynamicPricing === true,
-    peakHourMultiplier: parseFloat(peakHourMultiplier) || 5,
-  });
   try {
+    const { name, description, price, category, dynamicPricing, peakHourMultiplier } = req.body;
+    if (!name || !description || !price || !category || !req.file) {
+      return res.status(400).json({ success: false, message: "All fields are required." });
+    }
+
+    const parsedDynamicPricing = dynamicPricing === "true" || dynamicPricing === true;
+    const parsedPeakHourMultiplier = parseFloat(peakHourMultiplier);
+
+    if (isNaN(parsedPeakHourMultiplier) || parsedPeakHourMultiplier <= 0) {
+      return res.status(400).json({ success: false, message: "Invalid peak hour multiplier." });
+    }
+
+    const food = new FoodModel({
+      image: imageFilename,
+      name,
+      description,
+      price,
+      category,
+      dynamicPricing: parsedDynamicPricing,
+      peakHourMultiplier: parsedPeakHourMultiplier,
+    });
     await food.save();
     res.json({ success: true, message: "Item added" });
   } catch (e) {

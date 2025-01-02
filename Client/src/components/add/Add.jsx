@@ -40,7 +40,7 @@ const Add = () => {
     formData.append("category", data.category);
     formData.append("dynamicPricing", data.dynamicPricing);
     formData.append("peakHourMultiplier", data.peakHourMultiplier);
-    formData.append("averageRating", null); // Optional field for initial rating
+    formData.append("averageRating", null);
   
     try {
       // Make API request
@@ -69,7 +69,6 @@ const Add = () => {
       }
     } catch (error) {
       console.error(error);
-      // Show error message based on response or a fallback
       toast.error(error.response?.data?.message || "Failed to add item. Please try again.");
     }
   };
