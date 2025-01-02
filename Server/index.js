@@ -279,10 +279,10 @@ app.get("/food/list/:id", async (req, res) => {
 })
 
 app.post("/food/list/update/:id", upload.single('image'), async (req, res) => {
-  let image_filename = req.file.filename
+  let imageFile = req.file.path
   try{
     await FoodModel.findByIdAndUpdate(req.params.id, {
-      image: image_filename,
+      image: imageFile,
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
@@ -300,7 +300,7 @@ app.post("/food/delete/:id", async (req, res) => {
   const id = req.params.id
   try{
     const food = await FoodModel.findById({_id : id})
-    fs.unlink(`uploads/${food.image}`, ()=> {})
+    fs.unlink(`${food.image}`, ()=> {})
     await FoodModel.findByIdAndDelete({_id: id})
     res.json({success:true, message:"Item removed"})
   }
