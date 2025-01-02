@@ -7,9 +7,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5174"])
+CORS(app, origins=["https://doorfood-app-user-client.vercel.app"])
 
-client = MongoClient('mongodb://localhost:27017')
+client = MongoClient('mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood')
 db = client['doorfood']
 order_collection = db['orders']
 food_collection = db['foods']
@@ -78,6 +78,7 @@ def recommend():
 
     return jsonify({"success": True, "recommendations": unique_recommendations.tolist()}), 200
 
-
-if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+if __name__ != "__main__":
+    from flask import jsonify
+    def handler(request, context=None):
+        return app(request)
