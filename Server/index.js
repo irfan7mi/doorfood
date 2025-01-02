@@ -21,7 +21,6 @@ const url = process.env.MONGO_URI || 'mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@d
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import { v2 as cloudinary } from 'cloudinary';
-const { config, v2: cloudinaryV2 } = cloudinary;
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 const port = 4000
 const app= express()
@@ -145,7 +144,7 @@ cloudinary.config({
 });
 
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinaryV2,
+  cloudinary,
   params: {
     folder: "doorfood-images", 
     allowed_formats: ["jpg", "png", "jpeg"], 
@@ -162,7 +161,7 @@ app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
       return res.status(400).json({ success: false, message: "All fields are required." });
     }
 
-    const imageFilename = req.file.filename;
+    const imageUrl = req.file.path;
     console.log("Request body:", req.body);
     console.log("Uploaded file:", req.file);
     const parsedDynamicPricing = dynamicPricing === "true" || dynamicPricing === true;
@@ -174,7 +173,7 @@ app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
 
     // Create a new food item
     const food = new FoodModel({
-      image: imageFilename,
+      image: imageUrl,
       name,
       description,
       price: parseFloat(price),
