@@ -46,8 +46,9 @@ const List = () => {
         </thead>
         <tbody>
       {data.map((item, index) => (
-      <tr key={index}> 
-        <td><img src={item.image} className="food-img"/></td>
+      <tr key={item._id}> 
+        <td><img src={item.image || 'https://via.placeholder.com/50'} 
+        alt={item.name} onError={(e) => { e.target.src = 'https://via.placeholder.com/50'; }} className="food-img"/></td>
         <td>{item.name}</td>
         <td>{item.price}</td>
         <td>{item.category}</td>
