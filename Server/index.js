@@ -101,7 +101,7 @@ app.post("/user/signin",async (req, res) => {
 })
 
 
-app.post("/user/login", authMiddleWare, async (req, res) => {
+app.post("/user/login", async (req, res) => {
   const{email, password} = req.body
   try{
     let user = await UserModel.findOne({email})

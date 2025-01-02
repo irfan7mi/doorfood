@@ -13,6 +13,7 @@ const Login = ({setShowLogIn}) => {
         email: "",
         password: ""
     })
+    let uri = `${url}/user/`;
 
     const eventHandler = (e) => {
         const name = e.target.name
@@ -23,49 +24,23 @@ const Login = ({setShowLogIn}) => {
     const Submit = async (e) => {
         e.preventDefault()
         if (current === "SignIn") {
-            const uri = `${url}/user/signin`
-            const response = await axios.post(uri, user)
-            if (response.data.success) {
-                setToken(response.data.token)
-                localStorage.setItem("token", response.data.token)
-                toast.success(response.data.message)
-                setLogIn(true)
-            }
-            else{
-                toast.error(response.data.message)
-            }
+            uri += "signin"
         }
         else{
-            const uri = `${url}/user/login`
-            const token = localStorage.getItem("token");
-                if (!token) {
-                  toast.error("User not logged in! Please log in to proceed.");
-                  return;
-                }
-            try{
-            const response = await axios.post(uri, user, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}`,
-                    },
-                }
-            )
-            if (response.data.success) {
-                setToken(response.data.token)
-                localStorage.setItem("token", response.data.token)
-                toast.success(response.data.message)
-                setUserId(response.data.userId)
-                setCartItem(response.data.userCartData)
-                setLogIn(true)
-                setShowLogIn(false)
-            }
-            else{
-                toast.error(response.data.message)
-            }
-            } catch (error) {
-                  console.error(error);
-                  toast.error(error.response?.data?.message || "Failed to add item. Please try again.");
-            }
+            uri += "login"
+        }
+        const response = await axios.post(uri, user)
+        if (response.data.success) {
+            setToken(response.data.token)
+            localStorage.setItem("token", response.data.token)
+            toast.success(response.data.message)
+            setUserId(response.data.userId)
+            setCartItem(response.data.userCartData)
+            setLogIn(true)
+            setShowLogIn(false)
+        }
+        else{
+            toast.error(response.data.message)
         }
     }
     return (
