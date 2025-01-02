@@ -25,7 +25,7 @@ const Login = ({setShowLogIn}) => {
         let uri = `${url}/user/`
         if (current === "SignIn") {
             uri += "signin"
-            const response = await axios.post(url, user)
+            const response = await axios.post(uri, user)
             if (response.data.success) {
                 setToken(response.data.token)
                 localStorage.setItem("token", response.data.token)
@@ -40,14 +40,14 @@ const Login = ({setShowLogIn}) => {
             }
         }
         else{
-            url += "login"
+            uri += "login"
             const token = localStorage.getItem("token");
                 if (!token) {
                   toast.error("User not logged in! Please log in to proceed.");
                   return;
                 }
             try{
-            const response = await axios.post(url, user, {
+            const response = await axios.post(uri, user, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`,

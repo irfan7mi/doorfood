@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-  const url = "https://doorfood-app-server.vercel.app";
+  const url = "https://doorfood-app-server.vercel.app"
   const [logIn, setLogIn] = useState(false);
   const [cartItem, setCartItem] = useState(() => {
     const savedCart = localStorage.getItem("cartItem");
