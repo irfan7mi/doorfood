@@ -11,7 +11,6 @@ const RecommendedFoods = ({ userId }) => {
   useEffect(() => {
     const fetchRecommendations = async () => {
       try {
-        // Correct the API endpoint and method
         const response = await axios.post(
           `${url}/recommend/food`,
           { userId }

@@ -26,7 +26,7 @@ const FoodDisplay = () => {
     };
 
     fetchFoodList();
-  }, [setFoodData, url]); // Add dependencies to prevent warnings
+  }, [setFoodData, url]); 
   
   return (
     <div className="food-display">
@@ -43,8 +43,8 @@ const FoodDisplay = () => {
                 name={item.name}
                 image={item.image}
                 description={item.description}
-                price={item.price} // Dynamic pricing
-                averageRating={item.averageRating} // Dynamic rating
+                price={item.price} 
+                averageRating={item.averageRating} 
               />
             );
           }
