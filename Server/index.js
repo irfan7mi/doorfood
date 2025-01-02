@@ -151,6 +151,8 @@ app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
     }
 
     const imageFilename = req.file.filename;
+    console.log("Request body:", req.body);
+    console.log("Uploaded file:", req.file);
     const parsedDynamicPricing = dynamicPricing === "true" || dynamicPricing === true;
     const parsedPeakHourMultiplier = parseFloat(peakHourMultiplier);
 
