@@ -9,11 +9,7 @@ const FoodItem = ({ id, name, image, description, price, averageRating }) => {
     return (
         <div className="food-display-container">
             <div className="food-img-cart-count">
-                <img
-                    className="food-img-container"
-                    src={image} alt={item.name} onError={(e) => { e.target.src = 'https://via.placeholder.com/50'; }
-                    alt="Food Item"
-                />
+            <img className="food-img-container" src={image || 'https://via.placeholder.com/50'} onError={(e) => {e.target.src = 'https://via.placeholder.com/50';}}/>
                 { !cartItem[id] ? (
                     <p className="add-item-zero" onClick={(cartBool) => addToCart(id)}>
                         +
