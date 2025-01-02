@@ -22,9 +22,8 @@ const Login = ({setShowLogIn}) => {
 
     const Submit = async (e) => {
         e.preventDefault()
-        let uri = `${url}/user/`
         if (current === "SignIn") {
-            uri += "signin"
+            const uri = `${url}/user/signin`
             const response = await axios.post(uri, user)
             if (response.data.success) {
                 setToken(response.data.token)
@@ -40,7 +39,7 @@ const Login = ({setShowLogIn}) => {
             }
         }
         else{
-            uri += "login"
+            const uri = `${url}/user/login`
             const token = localStorage.getItem("token");
                 if (!token) {
                   toast.error("User not logged in! Please log in to proceed.");
