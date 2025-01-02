@@ -16,7 +16,7 @@ export const recommendedFood = async (req, res) => {
 
   try {
     // Call the ML API for recommendations
-    const response = await axios.post("http://localhost:5000/recommend", { userId });
+    const response = await axios.post("https://doorfood-app-ml-ai.onrender.com/recommend", { userId });
 
     console.log("ML API Response Data:", response.data);
 
