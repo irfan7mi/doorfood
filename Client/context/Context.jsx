@@ -25,8 +25,7 @@ const contextValue = {
     setToken,
     showLogIn, 
     setShowLogIn,
-    url,
-    imgURL
+    url
 }
 
 return (
