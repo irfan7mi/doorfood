@@ -11,12 +11,12 @@ const FoodItem = ({ id, name, image, description, price, averageRating }) => {
             <div className="food-img-cart-count">
             <img className="food-img-container" src={image || 'https://via.placeholder.com/50'} alt={name || "Food Image"} onError={(e) => {e.target.src = 'https://via.placeholder.com/50';}}/>
                 {!cartItem[id] ? (
-                    <p className="add-item-zero" onClick={addToCart(id)}>
+                    <p className="add-item-zero" onClick={() => {addToCart(id)}}>
                         +
                     </p>
                 ):(
                     <div className="cart-item-container">
-                        <p className="remove-item" onClick={removeFromCart(id)}>
+                        <p className="remove-item" onClick={() => {removeFromCart(id)}}>
                             -
                         </p>
                         <p className="count-item">{cartItem[id]}</p>
