@@ -6,7 +6,7 @@ import axios from "axios";
 import RecommendedFoods from '../Recommendation/RecommendedFood'
 
 const FoodDisplay = () => {
-  const { category, url } = useContext(StoreContext);
+  const { category, url, userId } = useContext(StoreContext);
   const [ foodData, setFoodData ] = useState([])
 
   useEffect(() => {
