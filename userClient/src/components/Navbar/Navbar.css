@@ -3,13 +3,12 @@
     margin: auto;
     display: flex;
     top: 0px;
-    width: 86vw;
-    min-width: 640px;
+    min-width: 680px;
     border-radius: 0px 0px 15px 15px;
     background-color: rgb(142, 199, 56);
     box-shadow: 0px 0px 6px rgb(216, 200, 200);
     flex-direction: row;
-    gap: 10px;
+    flex-wrap: wrap;
     padding: 15px 0px;
   }
   
@@ -107,7 +106,7 @@
  .search-cart-sign{
     display: flex;
     gap: 2vw;
-    margin-right: 30px;
+    margin-right: 20px;
     margin-left: 20px;
  }
 
@@ -211,4 +210,21 @@
     display: none;
     font-size: 10px;
   }
+ }
+
+ @media (max-width: 400px){
+  .company-name{
+    display: none;
+  }
+  .navbar-container .menu{
+    display: inline;
+    font-size: 20px;
+    display: flex;
+  }
+  .search-cart-sign{
+    display: flex;
+    gap: 3vw;
+    margin-right: 30px;
+    margin-left: 20px;
+ }
  }
