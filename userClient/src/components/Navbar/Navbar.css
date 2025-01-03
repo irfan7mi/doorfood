@@ -202,29 +202,43 @@
   }
  }
 
- @media (max-width: 450px){
-  .company-name{
+ @media (max-width: 576px){
+  .navbar-container{
+    min-width: 100px;
+  }
+  .navbar-container .company-name{
     display: inline;
+    font-size: 28px;
+    color: black;
   }
   .navbar-container .menu{
     display: none;
-    font-size: 10px;
   }
- }
+  .navbar-container .search-box{
+    display: none;
+  }
+  .navbar-container .cart{
+    margin-left: 150px;
+  }
 
- @media (max-width: 400px){
-  .company-name{
-    display: none;
+  .cart-status{
+    margin-left: 163px;
+   }
+
+  .navbar-container .sign-in{
+    color: black;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: white;
+    outline: none;
+    margin-top: 7px;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 3px;
+    height: fit-content;
   }
-  .navbar-container .menu{
-    display: inline;
-    font-size: 20px;
-    display: flex;
-  }
-  .search-cart-sign{
-    display: flex;
-    gap: 3vw;
-    margin-right: 30px;
-    margin-left: 20px;
- }
+
+  .account-profile{
+    margin-left: 25px;
+   }
  }

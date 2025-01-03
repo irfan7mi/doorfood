@@ -1,4 +1,4 @@
-.food-display {
+.food-displ {
     margin-top: 20px;
 }
 
@@ -15,12 +15,16 @@
     font-size: 34px;
 }
 
+.food-display-li{
+    margin-top: -10px;
+    animation: FadeIn 1s;
+}
+
 .food-display-list{
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
     gap: 20px;
     min-width: 640px;
     row-gap: 20px;
-    margin-top: 20px;
     animation: FadeIn 1s;
 }
