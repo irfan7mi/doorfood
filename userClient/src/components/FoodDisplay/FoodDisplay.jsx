@@ -3,6 +3,7 @@ import FoodItem from "../FoodItem/FoodItems";
 import "./FoodDisplay.css";
 import { StoreContext } from "../../../context/StoreContext";
 import axios from "axios";
+import RecommendedFoods from '../Recommendation/RecommendedFood'
 
 const FoodDisplay = () => {
   const { category, url } = useContext(StoreContext);
