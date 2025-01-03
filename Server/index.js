@@ -173,6 +173,10 @@ app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid peak hour multiplier." });
     }
 
+    const result = await cloudinary.v2.uploader.upload(file, {
+      folder: "doorfood-images",
+    });
+    
     // Create a new food item
     const food = new FoodModel({
       image: result.secure_url,
