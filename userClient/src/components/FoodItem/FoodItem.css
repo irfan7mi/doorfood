@@ -130,14 +130,13 @@
     }
 
     .food-img-container{
-        width: 143vw;
+        width: 100%;
         height: auto;
         border-radius: 15px 15px 0px 0px;
     }
 
     .food-info{
-        z-index: 3px;
-        width: 140%;
+        width: 95%;
         min-height: 130px;
     }
 
@@ -147,7 +146,7 @@
     }
     
     .price-info{
-        margin-left: 70px;
+        margin-left: 210px;
         font-size: 20px;
     }
         
