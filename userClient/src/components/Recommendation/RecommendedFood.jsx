@@ -9,6 +9,7 @@ const RecommendedFoods = () => {
   const {url, userId} = useContext(StoreContext)
 
   useEffect(() => {
+    console.log("USERID: ", userId)
     const fetchRecommendations = async () => {
       try {
         const response = await axios.post(`${url}/recommend/food`,{userId});
