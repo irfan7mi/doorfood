@@ -1,6 +1,6 @@
 .explore-menu-list{
     margin-top: 16px;
-    width: 640px;
+    min-width: 640px;
     box-shadow: 0px 0px 6px rgb(216, 200, 200);
     padding: 8px 20px;
     border-radius: 15px;
@@ -41,47 +41,4 @@
 
 .menu-explore .active{
     border: 5px solid rgb(224, 228, 12);
-}
-
-@media (max-width: 576px) {
-    .explore-menu-list{
-        margin-top: 16px;
-        width: 83vw;
-        box-shadow: 0px 0px 6px rgb(216, 200, 200);
-        padding: 8px 10px;
-        border-radius: 15px;
-        display: flex;
-        gap: 20px;
-        background-color: rgb(142, 199, 56);
-        text-align: center;
-        overflow: scroll;
-    }
-    
-    .explore-menu-content h1{
-        font-size: 34px;
-    }
-    
-    .explore-menu-content p{
-        color: black;
-    }
-    
-    .explore-menu-list::-webkit-scrollbar{
-        display: none;
-    }
-    
-    .explore-menu-list img{
-        background-size: cover;
-        height: 64px;
-        min-width: 60px;
-        width: 100%;
-        cursor: pointer;
-        border-radius: 50%;
-        border: 5px solid white;
-    }
-    
-    .menu-explore p{
-        color: white;
-        font-size: 12px;
-        font-weight: 500;
-    }
 }

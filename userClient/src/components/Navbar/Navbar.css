@@ -204,7 +204,7 @@
 
  @media (max-width: 576px){
   .navbar-container{
-    min-width: 100px;
+    width: 50%;
   }
   .navbar-container .company-name{
     display: inline;
