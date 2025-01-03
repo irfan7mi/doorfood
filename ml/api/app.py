@@ -5,11 +5,12 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
-import os  
+import os
 
 app = Flask(__name__)
 CORS(app, origins=["https://doorfood-app-user-client.vercel.app"])
 
+# MongoDB connection
 client = MongoClient(os.environ.get("MONGO_URI"))
 db = client['doorfood']
 order_collection = db['orders']
@@ -27,9 +28,9 @@ def recommend():
     if not user_id:
         return jsonify({"success": False, "message": "userId is required"}), 400
 
-    # Fetch only required fields from MongoDB
-    all_orders = order_collection.find({}, {"_id": 0, "userId": 1, "items": 1})
-    user_orders = [order for order in all_orders if str(order["userId"]) == user_id]
+    # Fetch user-specific and global data
+    user_orders = list(order_collection.find({"userId": user_id}, {"items": 1}))
+    all_orders = list(order_collection.find({}, {"items": 1}))
 
     if not user_orders:
         return jsonify({"success": False, "message": "No orders found for this user"}), 404
@@ -37,18 +38,17 @@ def recommend():
     all_dataset = []
     user_dataset = []
 
-    for order in user_orders:
+    for order in all_orders:
         for item in order["items"]:
-            user_dataset.append({
+            all_dataset.append({
                 "food_id": str(item["_id"]),
                 "food_name": item["name"],
                 "quantity": item["quantity"]
             })
-    
-    # Only load relevant orders
-    for order in order_collection.find({}, {"items": 1}):
+
+    for order in user_orders:
         for item in order["items"]:
-            all_dataset.append({
+            user_dataset.append({
                 "food_id": str(item["_id"]),
                 "food_name": item["name"],
                 "quantity": item["quantity"]
@@ -62,7 +62,7 @@ def recommend():
 
     # Efficient TF-IDF computation
     vectorizer = TfidfVectorizer(max_df=0.7, stop_words='english', min_df=1, ngram_range=(1, 2))
-    tfidf_matrix = vectorizer.fit_transform(all_df["food_name"]).tocsr()  # Use sparse matrix
+    tfidf_matrix = vectorizer.fit_transform(all_df["food_name"]).tocsr()
     similarity_matrix = cosine_similarity(tfidf_matrix, tfidf_matrix)
 
     food_id_to_index = {food_id: idx for idx, food_id in enumerate(all_df["food_id"])}
@@ -87,6 +87,11 @@ def recommend():
     unique_recommendations = top_recommendations.drop_duplicates(subset=["food_id"])["food_id"]
 
     return jsonify({"success": True, "recommendations": unique_recommendations.tolist()}), 200
+
+# Required for Vercel deployment
+def handler(event, context):
+    from flask import request
+    return app.full_dispatch_request()
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
