@@ -6,7 +6,7 @@ import axios from "axios";
 import RecommendedFoods from '../Recommendation/RecommendedFood'
 
 const FoodDisplay = () => {
-  const { category, url, userId } = useContext(StoreContext);
+  const { category, url } = useContext(StoreContext);
   const [ foodData, setFoodData ] = useState([])
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const FoodDisplay = () => {
   return (
     <div className="food-display">
       <h1>Welcome to DooRFooD</h1>
-      <RecommendedFoods userId={userId}/>
+      <RecommendedFoods/>
       <h1>All dishes near you...</h1>
       <div className="food-display-list">
         {foodData.map((item, index) => {

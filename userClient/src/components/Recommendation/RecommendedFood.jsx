@@ -4,17 +4,14 @@ import "./RecommendedFood.css";
 import axios from "axios";
 import { StoreContext } from "../../../context/StoreContext.jsx";
 
-const RecommendedFoods = ({ userId }) => {
+const RecommendedFoods = () => {
   const [recommendedFoods, setRecommendedFoods] = useState([]);
-  const {url} = useContext(StoreContext)
+  const {url, userId} = useContext(StoreContext)
 
   useEffect(() => {
     const fetchRecommendations = async () => {
       try {
-        const response = await axios.post(
-          `${url}/recommend/food`,
-          { userId }
-        );
+        const response = await axios.post(`${url}/recommend/food`,{userId});
         if (response.data.success) {
           setRecommendedFoods(response.data.recommendations);
           console.log("Recommended :", response.data);
