@@ -8,7 +8,7 @@ import numpy as np
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["https://doorfood-app-user-client.vercel.app"])
+CORS(app, resources={r"/*": {"origins": ["https://doorfood-app-user-client.vercel.app"]}})
 
 # MongoDB connection
 client = MongoClient(os.environ.get("mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood"))
@@ -21,6 +21,7 @@ def home():
     return jsonify({"success": True, "message": 'Welcome to DooRFooD API!'}), 200
 
 @app.route('/recommend', methods=['POST'])
+@cross_origin(origins=["https://doorfood-app-user-client.vercel.app"])
 def recommend():
     user_data = request.get_json()
     user_id = user_data.get("userId")

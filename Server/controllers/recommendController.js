@@ -24,6 +24,7 @@ export const recommendedFood = async (req, res) => {
       const recommendedFoodIds = response.data.recommendations; // Array of food IDs from ML API
 
       if (!recommendedFoodIds || recommendedFoodIds.length === 0) {
+        console.error("ML API Error Details:", error.response?.data || error.message);
         return res.status(404).json({ success: false, message: "No recommendations from ML model" });
       }
 

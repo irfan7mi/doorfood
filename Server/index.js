@@ -37,7 +37,12 @@ app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
 });
 
-app.use(cors({ origin: 'https://doorfood-app-client.vercel.app' }));
+app.use(cors({
+  origin: "https://doorfood-app-user-client.vercel.app",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+}));
+
 
 app.use(cors({
   origin: "*", // Allow all origins (for development)
