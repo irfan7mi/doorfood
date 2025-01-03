@@ -8,7 +8,7 @@ import numpy as np
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5174"])
+CORS(app, origins=["https://doorfood-app-user-client.vercel.app"])
 
 # MongoDB connection
 client = MongoClient(os.environ.get("mongodb+srv://mi2268242:q0zQ2HuspFPfohf0@doorfood.gxuxa.mongodb.net/?retryWrites=true&w=majority&appName=doorfood"))
