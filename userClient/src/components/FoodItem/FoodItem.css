@@ -126,6 +126,19 @@
 @media (max-width: 576px) {
     .food-display-container{
         margin-top: 20px;
+        width: 164%;
+    }
+
+    .food-img-container{
+        width: 143vw;
+        height: auto;
+        border-radius: 15px 15px 0px 0px;
+    }
+
+    .food-info{
+        z-index: 3px;
+        width: 140%;
+        min-height: 130px;
     }
 
     .food-display-name{
@@ -145,24 +158,24 @@
 
     .add-item-zero{
         font-size: 26px;
-        width: 39px;
-        height: 38px;
+        width: 35px;
+        height: 34px;
         bottom: 18px;
         right: 12px;
-        padding: 5px;
+        padding: 4px;
     }
 
     .add-item{
         font-size: 26px;
-        padding: 5px;
-        width: 38px;
-        border-radius: 50%;
+        padding: 4px;
+        width: 35px;
+        border-radius: 50%;;
     }
 
     .remove-item{
         font-size: 26px;
-        padding: 5px;
-        width: 38px;
+        padding: 4px;
+        width: 35px;
     }
 
     .cart-item-container{
@@ -174,6 +187,6 @@
 
     .food-display-rating {
         font-size: 18px;
-        gap: 58%;
+        gap: 48%;
     }
 }
