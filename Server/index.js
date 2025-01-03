@@ -170,7 +170,7 @@ app.post("/add", authMiddleWare, upload.single('image'), async (req, res) => {
 
     // Create a new food item
     const food = new FoodModel({
-      image: result.secure_url,
+      image: req.file.path,
       name,
       description,
       price: parseFloat(price),
