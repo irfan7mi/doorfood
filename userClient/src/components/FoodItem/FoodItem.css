@@ -126,7 +126,7 @@
 @media (max-width: 576px) {
     .food-display-container{
         margin-top: 20px;
-        width: 196%;
+        width: 198%;
     }
 
     .food-img-container{
@@ -186,6 +186,6 @@
 
     .food-display-rating {
         font-size: 18px;
-        gap: 40%;
+        gap: 43%;
     }
 }
