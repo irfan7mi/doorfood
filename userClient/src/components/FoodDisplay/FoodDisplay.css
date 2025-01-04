@@ -28,3 +28,9 @@
     row-gap: 20px;
     animation: FadeIn 1s;
 }
+
+@media (max-width: 576px) {
+    .food-displ h1{
+        font-size: 38px;
+    }
+}

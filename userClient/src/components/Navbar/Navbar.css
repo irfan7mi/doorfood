@@ -205,10 +205,11 @@
  @media (max-width: 576px){
   .navbar-container{
     width: 50%;
+    padding: 28px 0px;
   }
   .navbar-container .company-name{
     display: inline;
-    font-size: 28px;
+    font-size: 44px;
     color: black;
   }
   .navbar-container .menu{
@@ -218,23 +219,29 @@
     display: none;
   }
   .navbar-container .cart{
-    margin-left: 300px;
+    margin-top: 18px;
+    margin-left: 175px;
+  }
+
+  .cart{
+    font-size: 40px;
   }
 
   .cart-status{
-    margin-left: 313px;
+    margin-top: 20px;
+    margin-left: 192px;
    }
 
   .navbar-container .sign-in{
-    color: black;
-    font-size: 12px;
-    font-weight: 500;
-    background-color: white;
+    color: white;
+    font-size: 20px;
+    font-weight: 100;
+    background-color: tomato;
     outline: none;
     margin-top: 7px;
-    padding: 8px 10px;
+    padding: 10px 10px;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     margin-left: 32px;
     height: fit-content;
   }

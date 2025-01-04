@@ -35,7 +35,7 @@ const Navbar = ({setShowLogIn}) => {
             <SearchIcon className='search-icon'></SearchIcon>
             <input className='search-input' type="text" onChange={(e) => setCategory(e.target.value.toUpperCase())}  placeholder='Search category...'/>
           </div>
-          {(logIn) ? <Link to={'/cart'}><ShoppingCartIcon className='cart'></ShoppingCartIcon>
+          {(logIn) ? <Link to={'/cart'}><ShoppingCartIcon className='cart' fontSize='large'/>
           <div className={totalFromCart()===0 ? "no-cart" : "cart-status"}></div></Link> : <Link onClick={(e) => toast.error("SignIn your account!")}><ShoppingCartIcon className='cart'></ShoppingCartIcon>
           <div className={totalFromCart()===0 ? "no-cart" : "cart-status"}></div></Link>}
           {(token && logIn) ? 
