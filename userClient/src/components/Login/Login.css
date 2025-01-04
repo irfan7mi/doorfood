@@ -108,13 +108,13 @@
 @media (max-width: 576px) {
     .LogIn{
         margin: auto;
-        padding: 80px;
         align-items: center;
+        width: 100vw;
     }
     
     .LogIn-container{
-        min-width: 90px;
         padding: 30px 0px 30px;
+        width: 70%;
     }
 
     .LogIn-title{
@@ -139,12 +139,12 @@
     }
 
     .LogIn-inputs input{
-        padding: 14px;
+        padding: 10px;
      }
 
     .LogIn-inputs button{
         margin-top: 12px;
-        padding: 14px;
+        padding: 10px;
     }
 
     .LogIn-policy{
@@ -152,24 +152,24 @@
         margin-left: 40px;
         display: flex;
         gap: 10px;
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .new-account{
         margin-top: 15px;
-        font-size: 16px;
+        font-size: 12px;
         margin-left: 40px;
     }
 
     .new-account span{
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .cancel-btn{
-        padding: 7px 10px;
-        font-size: 16px;
+        padding: 4px 6px;
+        font-size: 14px;
         margin-top: -14px;
-        margin-left: 115px;
+        margin-left: 72px;
         position: absolute;
     }
 }

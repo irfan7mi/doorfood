@@ -126,7 +126,7 @@
 @media (max-width: 576px) {
     .food-display-container{
         margin-top: 20px;
-        width: 48%;
+        width: 100%;
     }
 
     .food-img-container{
@@ -136,56 +136,58 @@
     }
 
     .food-info{
-        width: 95%;
+        width: 92%;
         min-height: 130px;
     }
 
     .food-display-name{
         font-weight: 600;
-        font-size: 28px;
+        font-size: 24px;
     }
     
     .price-info{
         margin-left: auto;
         margin-right: 10px;
-        font-size: 26px;
+        font-size: 20px;
     }
         
     .food-display-details{
-        font-size: 20px;
+        font-size: 16px;
         min-height: 50px;
     }
 
     .add-item-zero{
-        font-size: 26px;
-        width: 35px;
-        height: 34px;
+        font-size: 20px;
+        width: 31px;
+        height: 30px;
         bottom: 18px;
         right: 12px;
-        padding: 4px;
+        padding: 2px;
     }
 
     .add-item{
-        font-size: 26px;
-        padding: 4px;
-        width: 35px;
+        font-size: 20px;
+        padding: 2px;
+        height: 30px;
+        width: 31px;
         border-radius: 50%;;
     }
 
     .remove-item{
-        font-size: 26px;
-        padding: 4px;
-        width: 35px;
+        font-size: 20px;
+        padding: 2px;
+        height: 30px;
+        width: 31px;
     }
 
     .cart-item-container{
         gap: 10px;
         padding: 4px 5px;
-        bottom: 18px;
+        bottom: 14px;
         right: 11px;
     }
 
     .food-display-rating {
-        font-size: 20px;
+        font-size: 16px;
     }
 }

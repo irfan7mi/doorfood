@@ -1,7 +1,4 @@
 .header{
-    min-height: 280px;
-    min-width: 278px;
-    height: fit-content;
     max-height: 290px;
     background-image: url('./top-view.jpg');
     background-size: cover;
@@ -127,4 +124,20 @@
         height: 40vh;
         background-position-y: -90px;
     }       
+}
+
+@media (max-width: 576px) {
+    .header{
+        height: 200px;
+        background-position-y: -0px;
+    }  
+
+    .header-contents h1{
+        font-size: 34px;
+        width: 100vw;
+    }
+
+    .header-contents .view-menu-btn{
+        margin-top: 20px;
+    }
 }

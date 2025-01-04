@@ -45,9 +45,7 @@
 
 @media (max-width: 576px) {
     .explore-menu-list{
-        width: 50%;
         margin-top: 16px;
-        min-width: 240px;
         box-shadow: 0px 0px 6px rgb(216, 200, 200);
         padding: 8px 20px;
         border-radius: 15px;
@@ -59,26 +57,25 @@
     }
     
     .explore-menu-content h1{
-        font-size: 38px;
+        font-size: 36px;
         width: 100%;
     }
     
     .explore-menu-content p{
         color: black;
-        font-size: 18px;
+        font-size: 16px;
         width: 100%;
     }
     
     .explore-menu-list img{
-        height: 104px;
-        min-width: 100px;
+        height: 84px;
         width: 100%;
         border: 6px solid white;
     }
     
     .menu-explore p{
         color: white;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 500;
     }
 }

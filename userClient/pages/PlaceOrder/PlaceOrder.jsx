@@ -123,7 +123,7 @@ const PlaceOrder = () => {
                   className="feedback-button"
                   onClick={() => handleFeedbackToggle(order._id)}
                 >
-                  {feedbackVisible[order._id] ? "Hide Feedback" : "Feedback"}
+                  {feedbackVisible[order._id] ? "X" : "Feedback"}
                 </button>
                 {feedbackVisible[order._id] && (
                   <div className="feedback-container">
@@ -185,8 +185,8 @@ const PlaceOrder = () => {
                       ))}
                     </select>
                     <button
-                      className="feedback-button"
-                      onClick={() => handleFeedbackSubmit(order._id)}
+                      className="feedback-button submit"
+                      onClick={() => {handleFeedbackSubmit(order._id)}}
                     >
                       Submit
                     </button>

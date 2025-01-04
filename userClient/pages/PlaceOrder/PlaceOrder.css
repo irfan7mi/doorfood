@@ -62,14 +62,31 @@
 
 @media (max-width: 576px) {
   .order-item-title {
-    width: 40%;
-    grid-template-columns: 2.5fr 1.5fr 1.4fr 1fr 1fr;
+    grid-template-columns: 2.5fr 1fr 1fr 1fr 1.4fr;
     gap: 10px;
+    font-size: 14px;
   }
 
   .order-item-list {
-    width: 40%;
-    grid-template-columns: 2fr 1fr 1.3fr 1fr 1fr;
-    gap: 10px;
+    width: 100vw;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px;
+  }
+
+  .h-line {
+    margin: 1px auto;
+  }
+
+  .feedback-container{
+    max-width: 100px;
+  }
+  
+  .feedback-button{
+    width: max-content;
+    margin-left: -50px;
+    font-size: 10px;
+  }
+  .submit{
+    margin-left: 0px;
   }
 }

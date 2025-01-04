@@ -3,7 +3,6 @@
     margin: auto;
     display: flex;
     top: 0px;
-    min-width: 280px;
     border-radius: 0px 0px 15px 15px;
     background-color: rgb(142, 199, 56);
     box-shadow: 0px 0px 6px rgb(216, 200, 200);
@@ -12,6 +11,12 @@
     padding: 15px 0px;
   }
   
+@media (min-width: 576px) {
+  .navbar-container{
+    min-width: 680px;
+  }
+}
+
   .company-name{
     padding: 0px 30px;
     letter-spacing: 2px;
@@ -204,13 +209,14 @@
 
  @media (max-width: 576px){
   .navbar-container{
-    width: 50%;
-    padding: 28px 0px;
+    width: 100%;
+    padding: 14px 0px;
   }
   .navbar-container .company-name{
     display: inline;
-    font-size: 44px;
+    font-size: 28px;
     color: black;
+    margin-right: 4px;
   }
   .navbar-container .menu{
     display: none;
@@ -219,8 +225,8 @@
     display: none;
   }
   .navbar-container .cart{
-    margin-top: 18px;
-    margin-left: 110px;
+    margin-top: 12px;
+    margin-left: -23px;
   }
 
   .cart{
@@ -228,18 +234,18 @@
   }
 
   .cart-status{
-    margin-top: 24px;
-    margin-left: 232px;
+    margin-top: 4px;
+    margin-left: 2px;
    }
 
   .navbar-container .sign-in{
     color: white;
-    font-size: 20px;
-    font-weight: 100;
+    font-size: 14px;
+    font-weight: 500;
     background-color: tomato;
     outline: none;
-    margin-top: 7px;
-    padding: 10px 10px;
+    margin-top: 14px;
+    padding: 5px 6px;
     border: none;
     border-radius: 5px;
     height: fit-content;
@@ -247,11 +253,8 @@
 
    .account-profile{
     margin-right: 10px;
-    margin-left: 35px;
-    padding: 6px;
-    border-radius: 50%;
-    background-color: tomato;
-    margin-top: 6px;
+    margin-left: 10px;
+    margin-top: 8px;
     color: white;
    }
   
