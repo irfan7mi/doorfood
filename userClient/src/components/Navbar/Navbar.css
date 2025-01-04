@@ -220,7 +220,7 @@
   }
   .navbar-container .cart{
     margin-top: 18px;
-    margin-left: 175px;
+    margin-left: 195px;
   }
 
   .cart{
@@ -228,8 +228,8 @@
   }
 
   .cart-status{
-    margin-top: 20px;
-    margin-left: 192px;
+    margin-top: 24px;
+    margin-left: 210px;
    }
 
   .navbar-container .sign-in{
@@ -242,7 +242,7 @@
     padding: 10px 10px;
     border: none;
     border-radius: 5px;
-    margin-left: 32px;
+    margin-left: 26px;
     height: fit-content;
   }
 

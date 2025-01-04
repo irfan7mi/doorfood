@@ -32,5 +32,6 @@
 @media (max-width: 576px) {
     .food-displ h1{
         font-size: 38px;
+        width: 100%;
     }
 }

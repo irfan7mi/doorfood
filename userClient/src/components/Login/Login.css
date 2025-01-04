@@ -107,7 +107,9 @@
 
 @media (max-width: 576px) {
     .LogIn{
-        width: 154%;
+        margin: auto;
+        padding: 80px;
+        align-items: center;
     }
     
     .LogIn-container{
