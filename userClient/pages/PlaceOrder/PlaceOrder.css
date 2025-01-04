@@ -62,13 +62,13 @@
 
 @media (max-width: 576px) {
   .order-item-title {
-    width: 100%;
+    width: 40%;
     grid-template-columns: 2.5fr 1.5fr 1.4fr 1fr 1fr;
     gap: 10px;
   }
 
   .order-item-list {
-    width: 110%;
+    width: 40%;
     grid-template-columns: 2fr 1fr 1.3fr 1fr 1fr;
     gap: 10px;
   }

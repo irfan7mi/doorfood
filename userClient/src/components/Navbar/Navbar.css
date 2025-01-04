@@ -3,7 +3,7 @@
     margin: auto;
     display: flex;
     top: 0px;
-    min-width: 680px;
+    min-width: 280px;
     border-radius: 0px 0px 15px 15px;
     background-color: rgb(142, 199, 56);
     box-shadow: 0px 0px 6px rgb(216, 200, 200);
@@ -220,7 +220,7 @@
   }
   .navbar-container .cart{
     margin-top: 18px;
-    margin-left: 210px;
+    margin-left: 110px;
   }
 
   .cart{

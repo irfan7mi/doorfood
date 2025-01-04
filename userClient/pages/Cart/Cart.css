@@ -61,9 +61,11 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 80px;
 }
 
 .delivery-details-container input{
+    width: 80px;
     padding: 8px 30px;
     border-radius: 5px;
     border: 1px solid rgb(170, 142, 142);
@@ -84,6 +86,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    display: none;
 }
 
 .calculate-details{
@@ -180,7 +183,7 @@
 
 @media (max-width: 576px) {
     .cart-item-title{
-        width: 140%;
+        width: 40%;
         grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1.3fr 1fr;
     }
 }

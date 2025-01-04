@@ -18,6 +18,7 @@
 .food-display-li{
     margin-top: -10px;
     animation: FadeIn 1s;
+    min-width: 200px;
 }
 
 .food-display-list{
@@ -32,6 +33,6 @@
 @media (max-width: 576px) {
     .food-displ h1{
         font-size: 38px;
-        width: 100%;
+        width: 50%;
     }
 }
