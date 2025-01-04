@@ -104,3 +104,70 @@
     background-color: tomato;
     color: white;
 }
+
+@media (max-width: 576px) {
+    .LogIn{
+        width: 154%;
+    }
+    
+    .LogIn-container{
+        min-width: 390px;
+        padding: 30px 0px 30px;
+    }
+
+    .LogIn-title{
+        text-align: center;
+        position: a;
+        margin-bottom: 15px;
+    }
+
+    .LogIn-title h3{
+        font-size: 24px;
+    }
+
+    .check-box{
+        cursor: pointer;
+    }
+
+    .LogIn-inputs{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 80%;
+    }
+
+    .LogIn-inputs input{
+        padding: 14px;
+     }
+
+    .LogIn-inputs button{
+        margin-top: 12px;
+        padding: 14px;
+    }
+
+    .LogIn-policy{
+        margin-top: 20px;
+        margin-left: 40px;
+        display: flex;
+        gap: 10px;
+        font-size: 16px;
+    }
+
+    .new-account{
+        margin-top: 15px;
+        font-size: 16px;
+        margin-left: 40px;
+    }
+
+    .new-account span{
+        font-size: 16px;
+    }
+
+    .cancel-btn{
+        padding: 7px 10px;
+        font-size: 16px;
+        margin-top: -14px;
+        margin-left: 115px;
+        position: absolute;
+    }
+}
