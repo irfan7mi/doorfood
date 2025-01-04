@@ -220,7 +220,7 @@
   }
   .navbar-container .cart{
     margin-top: 18px;
-    margin-left: 195px;
+    margin-left: 210px;
   }
 
   .cart{
@@ -229,7 +229,7 @@
 
   .cart-status{
     margin-top: 24px;
-    margin-left: 210px;
+    margin-left: 232px;
    }
 
   .navbar-container .sign-in{
@@ -242,11 +242,48 @@
     padding: 10px 10px;
     border: none;
     border-radius: 5px;
-    margin-left: 26px;
     height: fit-content;
   }
 
-  .account-profile{
-    margin-left: 25px;
+   .account-profile{
+    margin-right: 10px;
+    margin-left: 35px;
+    padding: 6px;
+    border-radius: 50%;
+    background-color: tomato;
+    margin-top: 6px;
+    color: white;
    }
+  
+  .account-box-container{
+    position: relative;
+  }
+
+  .account-box-container:hover .account-box{
+    background-color: white;
+    padding: 4px;
+    border: 2px solid rgba(255, 99, 71, 0.274);
+    font-size: 12px;
+    position: absolute;
+    border-radius: 4px;
+    margin-left: -20px;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .account-box{
+    display: none;
+  }
+
+  .account-box-content{
+    display: flex;
+    gap: 15px;
+    padding: 5px;
+    font-size: 15px;
+  }
+
+  .account-box-content:hover{
+    background-color: bisque;
+  }
  }

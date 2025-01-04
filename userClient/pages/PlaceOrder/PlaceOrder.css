@@ -17,7 +17,7 @@
   font-weight: 700;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-  color: rgb(206, 168, 168);
+  color: rgb(117, 95, 95);
   align-items: center;
   gap: 10px;
 }
@@ -31,6 +31,7 @@
   align-items: center;
   font-weight: 400;
   margin-top: 7px;
+  margin-left: 25px;
   font-size: 14px;
   color: black;
   display: grid;
@@ -45,6 +46,7 @@
 }
 
 .feedback-button {
+  margin-top: 7px;
   background-color: rgb(151, 69, 69);
   color: white;
   border-radius: 3px;
@@ -56,4 +58,18 @@
 
 .feedback-button:hover {
   background-color: rgb(153, 80, 80);
+}
+
+@media (max-width: 576px) {
+  .order-item-title {
+    width: 100%;
+    grid-template-columns: 2.5fr 1.5fr 1.4fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  .order-item-list {
+    width: 110%;
+    grid-template-columns: 2fr 1fr 1.3fr 1fr 1fr;
+    gap: 10px;
+  }
 }

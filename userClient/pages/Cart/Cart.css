@@ -10,7 +10,7 @@
     margin-left: 4vw;
     font-weight: 700;
     display: grid;
-    color: rgb(206, 168, 168);
+    color: rgb(117, 95, 95);
     grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
 }
 
@@ -176,4 +176,11 @@
 
 .cancel-promo:hover{
     background-color: black;
+}
+
+@media (max-width: 576px) {
+    .cart-item-title{
+        width: 140%;
+        grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1.3fr 1fr;
+    }
 }
