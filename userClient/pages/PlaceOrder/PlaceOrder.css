@@ -45,6 +45,10 @@
   width: 90%;
 }
 
+.feedback-container textarea{
+  margin-top: 4px;
+}
+
 .feedback-button {
   margin-top: 7px;
   background-color: rgb(151, 69, 69);
@@ -88,5 +92,14 @@
   }
   .submit{
     margin-left: 0px;
+  }
+}
+
+@media (min-width: 769px) {
+  .feedback-container{
+    max-width: 150px;
+  } 
+  .feedback-container textarea{
+    min-height: 40px;
   }
 }

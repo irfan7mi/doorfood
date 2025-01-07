@@ -173,3 +173,9 @@
         position: absolute;
     }
 }
+
+@media (min-width: 769px) {
+    .LogIn{
+        width: 100%;
+    }
+}

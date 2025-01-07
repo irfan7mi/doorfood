@@ -15,7 +15,8 @@
 }
 
 .cart-item-image{
-    max-width: 60px;
+    min-width: 60px;
+    max-height: 40px;
     border-radius: 4px;
 }
 
@@ -67,7 +68,7 @@
 }
 
 .delivery-details-container input{
-    width: 80px;
+    width: 30vw;
     padding: 8px 30px;
     border-radius: 5px;
     border: 1px solid rgb(170, 142, 142);
@@ -219,5 +220,8 @@
         display: flex;
         gap: 10px;
     }
+}
 
+@media (min-width: 769px) {
+    
 }

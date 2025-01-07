@@ -29,11 +29,11 @@ const FoodDisplay = () => {
   }, [setFoodData, url]); 
   
   return (
-    <div className="food-displ">
+    <div className="food-display">
       <h1>Welcome to DooRFooD</h1>
       <RecommendedFoods/>
       <h1>All dishes near you...</h1>
-      <div className="food-display-li">
+      <div className="food-display-list">
         {foodData.map((item, index) => {
           if (category === "All" || category === item.category) {
             return (

@@ -33,6 +33,10 @@
     font-size: 56px;
 }
 
+.header-title{
+    width: max-content;
+}
+
 .header-contents .view-menu-btn{
     margin-top: 90px;
     padding: 8px 16px;
@@ -139,5 +143,20 @@
 
     .header-contents .view-menu-btn{
         margin-top: 20px;
+    }
+}
+
+@media (min-width: 769px){
+    .header{
+        height: 400px;
+        background-position-y: 310px;
+    }  
+
+    .header-contents h1{
+        font-size: 40px;
+    }
+
+    .header-contents .view-menu-btn{
+        margin-top: 94px;
     }
 }

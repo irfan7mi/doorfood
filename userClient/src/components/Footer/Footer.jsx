@@ -11,7 +11,8 @@ const Footer = () => {
         </div>
         <div className="fooder-title fooder-content">
           <div className="company-about">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos distinctio ipsum ipsa commodi aliquam, nobis aut eos, vitae fugiat, debitis ex accusantium est non. Qui aliquid maxime commodi soluta voluptates.
+            DooRFooD is a premier food delivery service, connecting customers with fresh, high-quality meals. 
+            We prioritize taste, speed, and customer satisfaction, making every dining experience exceptional.
           </div>
           <div className="footer-about">
               <ul>
@@ -22,7 +23,7 @@ const Footer = () => {
               </ul>
           </div>
           <div className="footer-contact">
-              <p>Contact : +12-6788-912</p>
+              <p>Contact : +91 63795 61918</p>
               <p>E-mail : doorfood24@gmail.com</p>
           </div>
         </div>
