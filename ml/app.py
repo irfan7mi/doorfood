@@ -17,7 +17,7 @@ try:
         raise ValueError("MONGO_URI environment variable not set.")
     
     client = MongoClient(mongo_uri)
-    db = client['doorfood']
+    db = client['test']
     order_collection = db['orders']
     food_collection = db['foods']
 except errors.PyMongoError as e:
