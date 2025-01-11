@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./FoodItem.css";
-
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import { StoreContext } from "../../../context/StoreContext";
 
 const FoodItem = ({ id, name, image, description, price, averageRating }) => {
@@ -12,16 +13,16 @@ const FoodItem = ({ id, name, image, description, price, averageRating }) => {
             <img className="food-img-container" src={image || 'https://via.placeholder.com/50'} alt={name || "Food Image"} onError={(e) => {e.target.src = 'https://via.placeholder.com/50';}}/>
                 {!cartItem[id] ? (
                     <p className="add-item-zero" onClick={() => {addToCart(id)}}>
-                        +
+                        <AddIcon/>
                     </p>
                 ):(
                     <div className="cart-item-container">
                         <p className="remove-item" onClick={() => {removeFromCart(id)}}>
-                            -
+                            <RemoveIcon fontSize='small'/>
                         </p>
                         <p className="count-item">{cartItem[id]}</p>
                         <p className="add-item" onClick={() => {addToCart(id)}}>
-                            +
+                            <AddIcon fontSize='small'/>
                         </p>
                     </div>
                  ) 
