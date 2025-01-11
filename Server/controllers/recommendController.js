@@ -65,7 +65,7 @@ export const recommendedFood = async (req, res) => {
       });
 
       // Send the updated food items to the frontend
-      return res.json({ success: true, recommendations: updatedFoodItems });
+      return res.json({ success: true, recommendations: foods });
     } else {
       console.error("Unexpected response from ML API:", response.data);
       return res.status(500).json({ success: false, message: "Failed to fetch recommendations from ML model" });
