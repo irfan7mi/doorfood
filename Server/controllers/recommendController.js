@@ -21,15 +21,15 @@ export const recommendedFood = async (req, res) => {
     console.log("ML API Response Data:", response.data);
 
     if (response.status === 200) {
-      const recommendedFoodIds = response.data.recommendations; 
+      const recommendedFoodIds = response.data.recommendations;
 
       if (!recommendedFoodIds || recommendedFoodIds.length === 0) {
-        console.error("ML API Error Details:", error.response?.data || error.message);
+        console.error("No recommendations returned from ML API.");
         return res.status(404).json({ success: false, message: "No recommendations from ML model" });
       }
 
-      // Determine the maximum length of objectIdArray (3 recommendations)
-      const objectIdArray = recommendedFoodIds.slice(0, 3).map((id) => id.toString());
+      // Convert string IDs to ObjectId
+      const objectIdArray = recommendedFoodIds.map((id) => mongoose.Types.ObjectId(id));
 
       // Fetch recommended foods from MongoDB
       const foods = await FoodModel.find({ _id: { $in: objectIdArray } });
@@ -55,7 +55,7 @@ export const recommendedFood = async (req, res) => {
           if (lastDigit !== 0 && lastDigit !== 5) {
             adjustedPrice += lastDigit < 5 ? (5 - lastDigit) : (10 - lastDigit);
           }
-          adjustedPrice = Number(adjustedPrice.toFixed(2)); // Keep 2 decimal points
+          adjustedPrice = Number(adjustedPrice.toFixed(2));
         }
 
         return {
