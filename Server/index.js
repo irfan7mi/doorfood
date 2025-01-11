@@ -92,7 +92,9 @@ app.post("/user/signin",async (req, res) => {
     })
     let user = await newUser.save()
     const token = createToken(user._id)
-    return res.send({success: true,message: "Register successfully",token})
+    let userId = await user._id
+    let userCartData = await user.cartData
+    return res.send({success: true,message: "Register successfully",token, userId, userCartData})
   }
   catch (e) {
     console.log(e)
