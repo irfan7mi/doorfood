@@ -285,7 +285,7 @@
   }
   .navbar-container .cart{
     margin-top: 12px;
-    margin-left: -2px;
+    margin-left: -10px;
   }
 
   .cart{
@@ -296,7 +296,7 @@
     width: 5px;
     height: 5px;
     margin-top: 1px;
-    margin-left: 14px;
+    margin-left: 6px;
    }
 
   .navbar-container .sign-in{
