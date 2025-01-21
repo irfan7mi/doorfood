@@ -23,7 +23,7 @@ const Footer = () => {
               </ul>
           </div>
           <div className="footer-contact">
-              <p>Contact : +91 63795 61918</p>
+              <p>Contact : +916379561918</p>
               <p>E-mail : doorfood24@gmail.com</p>
           </div>
         </div>
