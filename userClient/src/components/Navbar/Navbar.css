@@ -269,7 +269,7 @@
  @media (max-width: 576px){
   .navbar-container{
     width: 100%;
-    padding: 14px 0px;
+    padding: 10px 0px 14px;
   }
   .navbar-container .company-name{
     display: inline;
@@ -285,7 +285,7 @@
   }
   .navbar-container .cart{
     margin-top: 12px;
-    margin-left: -23px;
+    margin-left: -2px;
   }
 
   .cart{
@@ -293,8 +293,10 @@
   }
 
   .cart-status{
-    margin-top: 4px;
-    margin-left: 2px;
+    width: 5px;
+    height: 5px;
+    margin-top: 1px;
+    margin-left: 14px;
    }
 
   .navbar-container .sign-in{
@@ -303,7 +305,7 @@
     font-weight: 500;
     background-color: tomato;
     outline: none;
-    margin-top: 14px;
+    margin-top: 10px;
     padding: 5px 6px;
     border: none;
     border-radius: 5px;
@@ -311,9 +313,9 @@
   }
 
    .account-profile{
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 8px;
+    margin-right: 5px;
+    margin-left: 15px;
+    margin-top: 3px;
     color: white;
    }
   

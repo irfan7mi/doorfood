@@ -46,7 +46,7 @@ const Navbar = ({setShowLogIn}) => {
               )}})}
             </div>
           </div>
-          {(logIn) ? <Link to={'/cart'}><ShoppingCartIcon className='cart' fontSize='large'/>
+          {(logIn) ? <Link to={'/cart'}><ShoppingCartIcon className='cart' fontSize='medium'/>
           <div className={totalFromCart()===0 ? "no-cart" : "cart-status"}></div></Link> : <Link onClick={(e) => toast.error("SignIn your account!")}><ShoppingCartIcon className='cart'></ShoppingCartIcon>
           <div className={totalFromCart()===0 ? "no-cart" : "cart-status"}></div></Link>}
           {(token && logIn) ? 
@@ -64,7 +64,7 @@ const Navbar = ({setShowLogIn}) => {
             </div>
             </div>
           </div> : 
-          <button className="sign-in" onClick={() => setShowLogIn(true)}>Sign In</button>}
+          <button className="sign-in" onClick={() => setShowLogIn(true)}>Log In</button>}
         </div>
     </div>
   )
