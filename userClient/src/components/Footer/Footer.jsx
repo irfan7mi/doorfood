@@ -6,7 +6,7 @@ const Footer = () => {
     <div className='footer-card' id='app-details'>
         <div className="fooder-title">
           <h2>DooRFooD</h2>
-          <h2>Company</h2>
+          <h2>Social Media</h2>
           <h2>Contact Us</h2>
         </div>
         <div className="fooder-title fooder-content">
@@ -16,10 +16,10 @@ const Footer = () => {
           </div>
           <div className="footer-about">
               <ul>
-                  <li>Home</li>
-                  <li>About</li>
-                  <li>Service</li>
-                  <li>Review</li>
+                  <li>Instagram</li>
+                  <li>Facebook</li>
+                  <li>Twitter</li>
+                  <li>YouTube</li>
               </ul>
           </div>
           <div className="footer-contact">

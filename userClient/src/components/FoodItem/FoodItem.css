@@ -49,7 +49,6 @@
 .add-item-zero{
     font-weight: 600;
     color: white;
-    font-size: 20px;
     border: 2px solid white;
     width: 27px;
     height: 26px;
@@ -193,11 +192,15 @@
 }
 
 @media (min-width: 576px) {
+    .add-item-zero{
+        padding: 2px;
+    }
+
     .add-item{
-        padding: 4px 2px 1px;
+        padding: 4px 2.5px 1px;
     }
 
     .remove-item{
-        padding: 4px 2px 1px;
+        padding: 4px 2.5px 1px;
     }
 }

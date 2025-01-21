@@ -7,7 +7,7 @@ const Header = () => {
     <div className='header'>
         <div className="header-contents">
             <h1 className='header-title'>Order your favorite foods here!</h1>
-            <p>Choose your favorite food and menu items then order it. Choose your favorite food and menu items then order it.</p>
+            <p>Welcome to DooRFooD! Explore a variety of mouthwatering cuisines, order your favorite meals, and enjoy fast doorstep delivery.</p>
             <a href='#menu-list' className='view-menu-btn'>VIEW MENU</a>
         </div>
     </div>

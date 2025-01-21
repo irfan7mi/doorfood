@@ -30,9 +30,8 @@ const FoodDisplay = () => {
   
   return (
     <div className="food-display">
-      <h1>Welcome to DooRFooD</h1>
       <RecommendedFoods/>
-      <h1>All dishes near you...</h1>
+      <h1>Delicious dishes, freshly made and delivered right to your doorstep!</h1>
       <div className="food-display-list">
         {foodData.map((item, index) => {
           if (category === "All" || category === item.category) {
