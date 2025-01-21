@@ -159,22 +159,22 @@
         font-size: 20px;
         width: 31px;
         height: 30px;
-        bottom: 18px;
+        bottom: 16px;
         right: 12px;
-        padding: 2px;
+        padding: 4px 2px 0px;
     }
 
     .add-item{
         font-size: 20px;
-        padding: 2px;
+        padding: 7px 2px 0px;
         height: 30px;
         width: 31px;
-        border-radius: 50%;;
+        border-radius: 50%;
     }
 
     .remove-item{
         font-size: 20px;
-        padding: 2px;
+        padding: 6px 2px 0px;
         height: 30px;
         width: 31px;
     }

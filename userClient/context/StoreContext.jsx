@@ -16,6 +16,7 @@ const StoreContextProvider = (props) => {
   const [userId, setUserId] = useState("");
   const [food_list, setFoodList] = useState([]);
   const [category, setCategory] = useState("All");
+  const [ foodData, setFoodData ] = useState([])
 
   useEffect(() => {
     const fetchFoodList = async () => {
@@ -142,6 +143,8 @@ const StoreContextProvider = (props) => {
     category,
     setCategory,
     processPayment,
+    foodData, 
+    setFoodData 
   };
 
   return (

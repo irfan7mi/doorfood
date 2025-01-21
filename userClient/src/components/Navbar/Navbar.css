@@ -60,6 +60,7 @@
   .search-box{
     display: flex;
     gap: 0px;
+    position: relative;
   }
   
   .search-icon{
@@ -89,13 +90,71 @@
     color: black;
   }
 
+  .search-food-container{
+    display: none;
+  }
+
+  .search-food-container::-webkit-scrollbar{
+    display: none;
+  }
+
+  .search-box:hover .search-food-container{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background-color: white;
+    width: 156px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50px;
+    min-height: 28px;
+    max-height: 100px;
+    padding: 4px 5px 2px 5px;
+    overflow: scroll;
+  }
+
+  .search-food-data{
+    display: flex;
+    gap: 10px;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .search-food-data:hover{
+    background-color: bisque;
+  }
+
+  .search-food-text{
+    font-size: 14px;
+    font-weight: 400;
+    padding: 4px 1px 3px 5px;
+    cursor: pointer;
+  }
+
+  .search-food-text:hover{
+    background-color: bisque;
+  }
+
+  .search-food-container img{
+    height: 26px;
+    width: 42px;
+    border-radius: 2px;
+  }
+
+  .search-food-container a{
+    margin-top: 3px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
   .navbar-container .sign-in{
     color: black;
     font-size: 12px;
     font-weight: 500;
     background-color: white;
     outline: none;
-    margin-top: 7px;
+    margin-top: 9px;
     padding: 8px 10px;
     border: none;
     border-radius: 3px;

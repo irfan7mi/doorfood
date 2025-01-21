@@ -12,14 +12,14 @@ import { StoreContext } from '../../../context/StoreContext';
 import Logout from '@mui/icons-material/Logout';
 
 const Navbar = ({setShowLogIn}) => {
-    const {totalFromCart, token, setToken, logIn, category,setCategory} = useContext(StoreContext)
+    const {totalFromCart, token, setToken, logIn, category, setCategory, foodData, setFoodData } = useContext(StoreContext)
+    const [searchData, setSearchData] = useState("Food")
     const [menu, setMenu] = useState('home')
 
     const Logout = () => {
       localStorage.removeItem("token")
       setToken("")
     }
-    console.log(category)
   return (
     <div className="navbar-container">
         <Link to={'/'} className='company-name'>DooRFooD</Link>
@@ -33,7 +33,18 @@ const Navbar = ({setShowLogIn}) => {
         <div className='search-cart-sign'>
           <div className="search-box">
             <SearchIcon className='search-icon'></SearchIcon>
-            <input className='search-input' type="text" onChange={(e) => setCategory(e.target.value.toUpperCase())}  placeholder='Search category...'/>
+            <input className='search-input' type="text" onChange={(e) => {setCategory(e.target.value.toUpperCase()); setSearchData(e.target.value)}} placeholder='Search category...'/>
+            <div className="search-food-container">
+              <p className='search-food-text'>{searchData}</p>
+              {foodData.map((food) => {
+                if (category === "All" || category === food.category) {
+                  return (
+                <div className='search-food-data' onClick={() => setMenu('home')}>
+                  <img src={food.image} alt="img" />
+                  <a href='#menu-list' onClick={() => setMenu('menu')}>{food.name}</a>
+                </div>
+              )}})}
+            </div>
           </div>
           {(logIn) ? <Link to={'/cart'}><ShoppingCartIcon className='cart' fontSize='large'/>
           <div className={totalFromCart()===0 ? "no-cart" : "cart-status"}></div></Link> : <Link onClick={(e) => toast.error("SignIn your account!")}><ShoppingCartIcon className='cart'></ShoppingCartIcon>
