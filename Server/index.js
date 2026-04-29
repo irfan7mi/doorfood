@@ -37,11 +37,12 @@ app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
 });
 
-app.use(cors({ origin: 'https://doorfood-app-client.vercel.app' }));
-
 app.use(cors({
-  origin: "*", // Allow all origins (for development)
+  origin: [
+    "https://doorfood-app-user-client.vercel.app"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
 
 const createToken = (id) => {
@@ -55,7 +56,7 @@ app.post("/admin/login", async (req, res) => {
     if (!user) {
       return res.json({success: false, message: "Admin doesn't exist!"})
     }
-    const isMatch = bcrypt.compare(email, password)
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.json({success: false, message: "Invalid credentials"})
     }
@@ -112,7 +113,7 @@ app.post("/user/login", async (req, res) => {
     }
     let userId = await user._id
     let userCartData = await user.cartData
-    const isMatch = bcrypt.compare(email, password)
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.json({success: false, message: "Invalid credentials"})
     }
@@ -364,7 +365,6 @@ const connectDB = async () => {
   }
 };
 
-app.listen(port, () => {
-  console.log(`Server started on ...`)
-})
 connectDB()
+
+export default app;
