@@ -12,7 +12,7 @@ const RecommendedFoods = () => {
     console.log("USERID: ", userId)
     const fetchRecommendations = async () => {
       try {
-        const response = await axios.post(`${url}/recommend/food`,{userId});
+        const response = await axios.post(`${url}/api/recommend/food`,{userId});
         if (response.data.success) {
           setRecommendedFoods(response.data.recommendations);
           console.log("Recommended :", response.data);
