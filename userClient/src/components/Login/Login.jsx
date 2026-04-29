@@ -13,7 +13,7 @@ const Login = ({setShowLogIn}) => {
         email: "",
         password: ""
     })
-    let uri = `${url}/user/`;
+    let uri = `${url}/api/user/`;
 
     const eventHandler = (e) => {
         const name = e.target.name
