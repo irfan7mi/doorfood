@@ -24,6 +24,11 @@ import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 const port = 4000
 const app= express()
+app.use(cors({
+  origin: "https://doorfood-app-user-client.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,12 +40,6 @@ app.get('/', (req, res) => {
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
 });
-
-app.use(cors({
-  origin: "https://doorfood-app-user-client.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
 
 const createToken = (id) => {
   return jwt.sign({id}, JWT_SECRET)
@@ -353,18 +352,22 @@ app.use("/api/order", orderRouter)
 app.use("/api/review", reviewRouter)
 app.use("/api/recommend", recommendRouter);
 
-let isConnected = false;
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
 
 const connectDB = async () => {
-  if (isConnected) return;
+  if (cached.conn) return cached.conn;
 
-  try {
-    await mongoose.connect(process.env.MONGO_URI || url);
-    isConnected = true;
-    console.log("DB Connected");
-  } catch (err) {
-    console.error("DB Connection Error:", err);
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(process.env.MONGO_URI || url)
+      .then((mongoose) => mongoose);
   }
+
+  cached.conn = await cached.promise;
+  return cached.conn;
 };
 
 await connectDB();
