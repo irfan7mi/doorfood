@@ -11,7 +11,7 @@ const FoodDisplay = () => {
   useEffect(() => {
     const fetchFoodList = async () => {
       try {
-        const response = await axios.get(`${url}/food/list`);
+        const response = await axios.get(`${url}/api/food/list`);
         if (response.data.success) {
           console.log(response.data)
           setFoodData(response.data.data || []);
