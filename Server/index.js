@@ -372,4 +372,3 @@ const connectDB = async () => {
 
 await connectDB();
 
-export default app;
