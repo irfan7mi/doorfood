@@ -359,7 +359,7 @@ const connectDB = async () => {
   if (isConnected) return;
 
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI || url);
     isConnected = true;
     console.log("DB Connected");
   } catch (err) {
