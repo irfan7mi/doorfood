@@ -23,12 +23,7 @@ const Login = ({setShowLogIn}) => {
 
     const Submit = async (e) => {
         e.preventDefault()
-        if (current === "SignIn") {
-            uri += "signin"
-        }
-        else{
-            uri += "login"
-        }
+        const uri = current === "SignIn" ? `${url}/user/signin` : `${url}/user/login`;
         const response = await axios.post(uri, user)
         if (response.data.success) {
             setToken(response.data.token)
