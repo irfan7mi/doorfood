@@ -24,7 +24,6 @@ import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 const port = 4000
 const app= express()
-app.use(cors())
 app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -38,9 +37,7 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 app.use(cors({
-  origin: [
-    "https://doorfood-app-user-client.vercel.app"
-  ],
+  origin: "https://doorfood-app-user-client.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -356,15 +353,20 @@ app.use("/order", orderRouter)
 app.use("/review", reviewRouter)
 app.use("/recommend", recommendRouter);
 
+let isConnected = false;
+
 const connectDB = async () => {
+  if (isConnected) return;
+
   try {
-    await mongoose.connect(url);
-    console.log('DB Connected');
+    await mongoose.connect(process.env.MONGO_URI);
+    isConnected = true;
+    console.log("DB Connected");
   } catch (err) {
-    console.error('DB Connection Error:', err);
+    console.error("DB Connection Error:", err);
   }
 };
 
-connectDB()
+await connectDB();
 
 export default app;
