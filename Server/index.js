@@ -46,7 +46,7 @@ const createToken = (id) => {
   return jwt.sign({id}, JWT_SECRET)
 }
 
-app.post("api/admin/login", async (req, res) => {
+app.post("/api/admin/login", async (req, res) => {
   const{email, password} = req.body
   try{
     let user = await AdminModel.findOne({email})
@@ -66,7 +66,7 @@ app.post("api/admin/login", async (req, res) => {
   }
 })
 
-app.post("api/user/signin",async (req, res) => {
+app.post("/api/user/signin",async (req, res) => {
   const {name, mobile, email, password} = req.body
   try{
     const exist = await UserModel.findOne({email})
@@ -101,7 +101,7 @@ app.post("api/user/signin",async (req, res) => {
 })
 
 
-app.post("api/user/login", async (req, res) => {
+app.post("/api/user/login", async (req, res) => {
   const{email, password} = req.body
   try{
     let user = await UserModel.findOne({email})
@@ -123,7 +123,7 @@ app.post("api/user/login", async (req, res) => {
   }
 })
 
-app.get("api/user/list", async (req, res) => {
+app.get("/api/user/list", async (req, res) => {
   try{
     const food = await UserModel.find()
     let userCount = await UserModel.find({}).countDocuments()
@@ -151,7 +151,7 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage });
 
-app.post("api/add", authMiddleWare, upload.single('image'), async (req, res) => {
+app.post("/api/add", authMiddleWare, upload.single('image'), async (req, res) => {
   try {
     const { name, description, price, category, dynamicPricing, peakHourMultiplier } = req.body;
 
@@ -193,7 +193,7 @@ const isPeakHour = () => {
   return (currentHour >= 12 && currentHour <= 14) || (currentHour >= 19 && currentHour <= 21); 
 };
 
-app.post("api/food/rate", async (req, res) => {
+app.post("/api/food/rate", async (req, res) => {
   const { foodId, userId, rating } = req.body;
 
   try {
@@ -216,7 +216,7 @@ app.post("api/food/rate", async (req, res) => {
   }
 });
 
-app.get("api/food/list", async (req, res) => {
+app.get("/api/food/list", async (req, res) => {
   const { search } = req.query;
 
   try {
@@ -264,7 +264,7 @@ app.get("api/food/list", async (req, res) => {
   }
 });
 
-app.get("api/food/list/:id", async (req, res) => {
+app.get("/api/food/list/:id", async (req, res) => {
   const id = req.params.id
   try{
     const food = await FoodModel.findById({_id: id})
@@ -276,7 +276,7 @@ app.get("api/food/list/:id", async (req, res) => {
   }
 })
 
-app.post("api/food/list/update/:id", upload.single('image'), async (req, res) => {
+app.post("/api/food/list/update/:id", upload.single('image'), async (req, res) => {
   let imageFile = req.file.path
   try{
     await FoodModel.findByIdAndUpdate(req.params.id, {
@@ -294,7 +294,7 @@ app.post("api/food/list/update/:id", upload.single('image'), async (req, res) =>
   }
 })
 
-app.post("api/food/delete/:id", async (req, res) => {
+app.post("/api/food/delete/:id", async (req, res) => {
   const id = req.params.id
   try{
     const food = await FoodModel.findById({_id : id})
@@ -307,7 +307,7 @@ app.post("api/food/delete/:id", async (req, res) => {
   }
 })
 
-app.post("api/cart/add", async(req, res) => {
+app.post("/api/cart/add", async(req, res) => {
   const {email, itemId} = req.body
   try{
     let userData = await UserModel.findOne({email})
@@ -331,7 +331,7 @@ app.post("api/cart/add", async(req, res) => {
   }
 })
 
-app.post("api/cart/remove", async(req, res) => {
+app.post("/api/cart/remove", async(req, res) => {
   const {email, itemId} = req.body
   try{
     let userData = await UserModel.findOne({email})
@@ -349,9 +349,9 @@ app.post("api/cart/remove", async(req, res) => {
   }
 })
 
-app.use("api/order", orderRouter)
-app.use("api/review", reviewRouter)
-app.use("api/recommend", recommendRouter);
+app.use("/api/order", orderRouter)
+app.use("/api/review", reviewRouter)
+app.use("/api/recommend", recommendRouter);
 
 let isConnected = false;
 
