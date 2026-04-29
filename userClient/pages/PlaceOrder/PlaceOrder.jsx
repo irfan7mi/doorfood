@@ -18,7 +18,7 @@ const PlaceOrder = () => {
         return;
       }
   
-      const response = await axios.post(`${url}/order/list/userOrder`, { userId }); // Ensure userId is passed
+      const response = await axios.post(`${url}/api/order/list/userOrder`, { userId }); // Ensure userId is passed
       setOrderData(response.data.orders);
     } catch (error) {
       console.error("Error fetching order list:", error);
