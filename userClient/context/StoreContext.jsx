@@ -21,7 +21,7 @@ const StoreContextProvider = (props) => {
   useEffect(() => {
     const fetchFoodList = async () => {
       try {
-        const response = await axios.get(`${url}/food/list`);
+        const response = await axios.get(`${url}/api/food/list`);
         if (response.data.success) {
           setFoodList(response.data.data || []);
         } else {
@@ -50,7 +50,7 @@ const StoreContextProvider = (props) => {
     }
     else toast.error("SignIn your account!");
     if (token) {
-      const response = await axios.post(url + "/cart/add", { itemId, email });
+      const response = await axios.post(url + "/api/cart/add", { itemId, email });
       if (response.data.success) {
         toast.success(response.data.message);
       } else {
@@ -71,7 +71,7 @@ const StoreContextProvider = (props) => {
     });
 
     if (token) {
-      const response = await axios.post(url + "/cart/remove", { itemId, email });
+      const response = await axios.post(url + "/api/cart/remove", { itemId, email });
       if (response.data.success) {
         toast.success(response.data.message);
       } else {
@@ -98,7 +98,7 @@ const StoreContextProvider = (props) => {
 
   const processPayment = async (paymentDetails) => {
     try {
-      const response = await axios.post(`${url}/payment`, {
+      const response = await axios.post(`${url}/api/payment`, {
         userId,
         email,
         items: cartItem,
