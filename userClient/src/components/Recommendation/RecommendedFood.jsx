@@ -9,23 +9,21 @@ const RecommendedFoods = () => {
   const {url, userId} = useContext(StoreContext)
 
   useEffect(() => {
-    console.log("USERID: ", userId)
-    const fetchRecommendations = async () => {
-      try {
-        const response = await axios.post(`${url}/api/recommend/food`,{userId});
-        if (response.data.success) {
-          setRecommendedFoods(response.data.recommendations);
-          console.log("Recommended :", response.data);
-        } else {
-          console.error("Failed to fetch recommendations:", response.data.message);
-        }
-      } catch (error) {
-        console.error("Error fetching recommendations:", error.message);
-      }
-    };
+  if (!userId) return; // 🚨 important
 
-    fetchRecommendations();
-  }, [userId]);
+  const fetchRecommendations = async () => {
+    try {
+      const response = await axios.post(`${url}/api/recommend/food`, { userId });
+      if (response.data.success) {
+        setRecommendedFoods(response.data.recommendations);
+      }
+    } catch (error) {
+      console.error("Error fetching recommendations:", error.message);
+    }
+  };
+
+  fetchRecommendations();
+}, [userId]);
 
   return (
     <div className="recommended-foods-container">
