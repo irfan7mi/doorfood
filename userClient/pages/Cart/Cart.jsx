@@ -50,7 +50,7 @@ const Cart = () => {
     const payment = "Yes";
   
     try {
-      const response = await axios.post(`${url}/order/place`, {
+      const response = await axios.post(`${url}/api/order/place`, {
         userId,
         email: data.email,
         items,
